@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WecareMVC.Models.Genre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Browse Genres</h2>
+
+<p> Select from @Model.Count() 
+    genres:</p>
+<ul>
+    @foreach (var genre in Model)
+    {
+        <li>@Html.ActionLink(genre.Name,"browse", new{ genre = genre.Name})</li>
+    }
+</ul>
