@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.MicrosoftAccount</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider">
+      <summary>指定 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> 叫用的回呼方法，以便開發人員控制驗證程序。/&amp;amp;gt;</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider.Authenticated(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext)">
+      <summary>每當 Microsoft 成功驗證使用者時叫用</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+      <param name="context">包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext)">
+      <summary>在 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 儲存在本機 cookie 且將瀏覽器重新導向至原先要求之 URL 前叫用。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext">
+      <summary>包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,Newtonsoft.Json.Linq.JObject,System.String)">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext" /></summary>
+      <param name="context">OWIN 環境</param>
+      <param name="user">JSON 序列化使用者</param>
+      <param name="accessToken">Microsoft 驗證服務所提供的存取語彙基元</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.AccessToken">
+      <summary>取得 Microsoft 驗證服務所提供的存取語彙基元</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Email">
+      <summary>取得使用者電子郵件地址</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.FirstName">
+      <summary>取得使用者名字</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Id">
+      <summary>取得 Microsoft 帳戶使用者 ID</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Identity">
+      <summary>取得代表使用者的 <see cref="T:System.Security.Claims.ClaimsIdentity" /></summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.LastName">
+      <summary>取得使用者姓氏</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Name">
+      <summary>取得使用者名稱</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.Properties">
+      <summary>取得或設定通用驗證屬性的屬性包</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext.User">
+      <summary>取得 JSON 序列化使用者</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware">
+      <summary>OWIN 中介軟體，用來驗證使用 Microsoft 帳戶服務的使用者</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions)">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /></summary>
+      <param name="next">OWIN 管線中要叫用的下一個中介軟體</param>
+      <param name="app">OWIN 應用程式</param>
+      <param name="options">中介軟體的組態選項</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware.CreateHandler">
+      <summary>提供 <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> 物件，以便處理驗證相關要求。</summary>
+      <returns>以提供給建構函式的 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions" /> 設定的 <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" />。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions">
+      <summary>
+        <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> 的組態選項</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.#ctor">
+      <summary>初始化新的 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions" />。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelCertificateValidator">
+      <summary>取得或設定固定的憑證驗證程式，用以驗證屬於 Microsoft 帳戶之後頻道通訊中所用的端點。</summary>
+      <returns>固定的憑證驗證程式。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelHttpHandler">
+      <summary>用來與 Microsoft 通訊的 HttpMessageHandler。此屬性不能與 BackchannelCertificateValidator 同時設定，除非此值可以向下轉型為 WebRequestHandler。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.BackchannelTimeout">
+      <summary>取得或設定與 Microsoft 進行後頻道通訊的逾時值 (以毫秒為單位)。</summary>
+      <returns>後頻道逾時。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.CallbackPath">
+      <summary>應用程式的基本路徑中將傳回 user-agent 的要求路徑。中介軟體將會在此要求送達時予以處理。預設值為 "/signin-microsoft"。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Caption">
+      <summary>取得或設定使用者可以顯示在登入使用者介面上的文字。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.ClientId">
+      <summary>Microsoft 驗證服務所提供的應用程式用戶端 ID。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.ClientSecret">
+      <summary>Microsoft 驗證服務所提供的應用程式用戶端密碼。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Provider">
+      <summary>取得或設定用來處理驗證事件的 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider" />。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.Scope">
+      <summary>要求的權限清單。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>取得或設定將負責實際簽發使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的其他驗證中介軟體名稱。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions.StateDataFormat">
+      <summary>取得或設定類型，用以保護中介軟體所處理資料的安全。</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider">
+      <summary>預設 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.IMicrosoftAccountAuthenticationProvider" /> 實作。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.#ctor">
+      <summary>初始化新的 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider" /></summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.Authenticated(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticatedContext)">
+      <summary>每當 Microsoft 成功驗證使用者時叫用</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+      <param name="context">包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.OnAuthenticated">
+      <summary>取得或設定在叫用 Authenticated 方法時叫用的函數。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.OnReturnEndpoint">
+      <summary>取得或設定在叫用 ReturnEndpoint 方法時叫用的函數。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext)">
+      <summary>在 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 儲存在本機 cookie 且將瀏覽器重新導向至原先要求之 URL 前叫用。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+      <param name="context">包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext">
+      <summary>提供中介軟體提供者的內容資訊。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>初始化新的 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountReturnEndpointContext" />。</summary>
+      <param name="context">OWIN 環境</param>
+      <param name="ticket">驗證票券</param>
+    </member>
+    <member name="T:Owin.MicrosoftAccountAuthenticationExtensions">
+      <summary>使用 <see cref="T:Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationMiddleware" /> 的擴充方法</summary>
+    </member>
+    <member name="M:Owin.MicrosoftAccountAuthenticationExtensions.UseMicrosoftAccountAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.MicrosoftAccount.MicrosoftAccountAuthenticationOptions)">
+      <summary>驗證使用 Microsoft 帳戶的使用者</summary>
+      <returns>已更新的 <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">傳遞到設定方法的 <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="options">中介軟體組態選項</param>
+    </member>
+    <member name="M:Owin.MicrosoftAccountAuthenticationExtensions.UseMicrosoftAccountAuthentication(Owin.IAppBuilder,System.String,System.String)">
+      <summary>驗證使用 Microsoft 帳戶的使用者</summary>
+      <param name="app">傳遞到設定方法的 <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="clientId">Microsoft 驗證服務所提供的應用程式用戶端 ID</param>
+      <param name="clientSecret">Microsoft 驗證服務所提供的應用程式用戶端密碼</param>
+    </member>
+  </members>
+</doc>

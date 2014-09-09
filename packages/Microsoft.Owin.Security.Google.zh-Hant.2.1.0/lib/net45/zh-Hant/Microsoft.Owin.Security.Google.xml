@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.Google</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext">
+      <summary>表示 Google 驗證的內容。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,System.Security.Claims.ClaimsIdentity,Microsoft.Owin.Security.AuthenticationProperties,System.Xml.Linq.XElement,System.Collections.Generic.IDictionary{System.String,System.String})"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext.AttributeExchangeProperties">
+      <summary>取得或設定屬性交換內容的內容。</summary>
+      <returns>屬性交換內容的內容。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext.Identity">
+      <summary>取得或設定與此內容相關聯的宣告識別。</summary>
+      <returns>與此內容相關聯的宣告識別。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext.Properties"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticatedContext.ResponseMessage">
+      <summary>取得或設定這個驗證的回應訊息。</summary>
+      <returns>這個驗證的回應訊息。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Google.GoogleAuthenticationMiddleware">
+      <summary>表示 Google 驗證中介軟體。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.Google.GoogleAuthenticationOptions)">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Google.GoogleAuthenticationMiddleware" /> 類別的新執行個體。</summary>
+      <param name="next">要驗證的下一個應用程式。</param>
+      <param name="app">應用程式產生器。</param>
+      <param name="options">驗證選項。</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationMiddleware.CreateHandler">
+      <summary>建立此中介軟體的驗證處理常式。</summary>
+      <returns>建立的 <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler`1" />。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions">
+      <summary>表示 Google 驗證選項。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.BackchannelCertificateValidator"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.BackchannelHttpHandler"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.BackchannelTimeout"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.CallbackPath"></member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.Caption">
+      <summary>取得或設定用來驗證的標題。</summary>
+      <returns>用來驗證的標題。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.Provider">
+      <summary>取得或設定 Google 驗證提供者。</summary>
+      <returns>Google 驗證提供者。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>取得或設定登入 Google 時使用的驗證類型。</summary>
+      <returns>登入 Google 時使用的驗證類型。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationOptions.StateDataFormat"></member>
+    <member name="T:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider">
+      <summary>表示 Google 驗證提供者。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Google.GoogleAuthenticatedContext)">
+      <summary>表示指定的驗證內容。</summary>
+      <returns>表示驗證內容的作業工作。</returns>
+      <param name="context">Google 驗證的內容。</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider.OnAuthenticated">
+      <summary>取得或設定呼叫驗證事件的函式。</summary>
+      <returns>呼叫驗證事件的函式。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider.OnReturnEndpoint">
+      <summary>取得或設定呼叫 ReturnEndpoint 事件的函式。</summary>
+      <returns>呼叫 ReturnEndpoint 事件的函式。</returns>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Google.GoogleReturnEndpointContext)">
+      <summary>表示指定的傳回端點內容。</summary>
+      <returns>處理傳回端點的工作。</returns>
+      <param name="context">Google 傳回端點內容。</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Google.GoogleReturnEndpointContext">
+      <summary>表示 Google 傳回端點內容。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.GoogleReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)"></member>
+    <member name="T:Microsoft.Owin.Security.Google.IGoogleAuthenticationProvider">
+      <summary>提供 Google 驗證提供者介面。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.IGoogleAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Google.GoogleAuthenticatedContext)">
+      <summary>表示指定的驗證內容。</summary>
+      <returns>表示驗證內容的作業工作。</returns>
+      <param name="context">Google 驗證的內容。</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Google.IGoogleAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Google.GoogleReturnEndpointContext)">
+      <summary>表示指定的傳回端點內容。</summary>
+      <returns>處理傳回端點的工作。</returns>
+      <param name="context">Google 傳回端點內容。</param>
+    </member>
+    <member name="T:Owin.GoogleAuthenticationExtensions">
+      <summary>表示 Google 驗證的擴充方法。</summary>
+    </member>
+    <member name="M:Owin.GoogleAuthenticationExtensions.UseGoogleAuthentication(Owin.IAppBuilder)">
+      <summary>在中介軟體使用 Google 驗證之後呼叫。</summary>
+      <returns>Google 驗證。</returns>
+      <param name="app">應用程式產生器。</param>
+    </member>
+    <member name="M:Owin.GoogleAuthenticationExtensions.UseGoogleAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.Google.GoogleAuthenticationOptions)">
+      <summary>在中介軟體使用 Google 驗證之後呼叫。</summary>
+      <returns>Google 驗證。</returns>
+      <param name="app">應用程式產生器。</param>
+      <param name="options">Google 驗證選項。</param>
+    </member>
+  </members>
+</doc>

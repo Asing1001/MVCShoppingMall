@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Security.Twitter</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider">
+      <summary>指定 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /> 叫用的回呼方法，以便開發人員控制驗證程序。/&amp;amp;gt;</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext)">
+      <summary>每當 Twitter 成功驗證使用者時叫用</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+      <param name="context">包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext)">
+      <summary>在 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 儲存在本機 cookie 且將瀏覽器重新導向至原先要求之 URL 前叫用。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext">
+      <summary>包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.#ctor(Microsoft.Owin.IOwinContext,System.String,System.String,System.String,System.String)">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext" /></summary>
+      <param name="context">OWIN 環境</param>
+      <param name="userId">Twitter 使用者 ID</param>
+      <param name="screenName">Twitter 畫面名稱</param>
+      <param name="accessToken">Twitter 存取語彙基元</param>
+      <param name="accessTokenSecret">Twitter 存取語彙基元密碼</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.AccessToken">
+      <summary>取得 Twitter 存取語彙基元</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.AccessTokenSecret">
+      <summary>取得 Twitter 存取語彙基元密碼</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.Identity">
+      <summary>取得代表使用者的 <see cref="T:System.Security.Claims.ClaimsIdentity" /></summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.Properties">
+      <summary>取得或設定通用驗證屬性的屬性包</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.ScreenName">
+      <summary>取得 Twitter 畫面名稱</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext.UserId">
+      <summary>取得 Twitter 使用者 ID</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware">
+      <summary>用以驗證使用 Twitter 之使用者的 OWIN 中介軟體</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware.#ctor(Microsoft.Owin.OwinMiddleware,Owin.IAppBuilder,Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions)">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /></summary>
+      <param name="next">OWIN 管線中要叫用的下一個中介軟體</param>
+      <param name="app">OWIN 應用程式</param>
+      <param name="options">中介軟體的組態選項</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware.CreateHandler">
+      <summary>提供 <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" /> 物件，以便處理驗證相關要求。</summary>
+      <returns>以提供給建構函式的 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions" /> 設定的 <see cref="T:Microsoft.Owin.Security.Infrastructure.AuthenticationHandler" />。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions">
+      <summary>Twitter 驗證中介軟體的選項。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelCertificateValidator">
+      <summary>取得或設定固定的憑證驗證程式，用以驗證屬於 Twitter 之後頻道通訊中所用的端點。</summary>
+      <returns>固定的憑證驗證程式。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelHttpHandler">
+      <summary>用來與 Twitter 通訊的 HttpMessageHandler。此屬性不能與 BackchannelCertificateValidator 同時設定，除非此值可以向下轉型為 WebRequestHandler。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.BackchannelTimeout">
+      <summary>取得或設定與 Twitter 進行後頻道通訊的逾時值 (以毫秒為單位)。</summary>
+      <returns>後頻道逾時。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.CallbackPath">
+      <summary>應用程式的基本路徑中將傳回 user-agent 的要求路徑。中介軟體將會在此要求送達時予以處理。預設值為 "/signin-twitter"。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.Caption">
+      <summary>取得或設定使用者可以顯示在登入使用者介面上的文字。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.ConsumerKey">
+      <summary>取得或設定用來與 Twitter 通訊的取用者索引鍵。</summary>
+      <returns>用來與 Twitter 通訊的取用者索引鍵。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.ConsumerSecret">
+      <summary>取得或設定用來簽署對 Twitter 之要求的取用者密碼。</summary>
+      <returns>用來簽署對 Twitter 之要求的取用者密碼。</returns>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.Provider">
+      <summary>取得或設定用來處理驗證事件的 <see cref="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider" />。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.SignInAsAuthenticationType">
+      <summary>取得或設定將負責實際簽發使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的其他驗證中介軟體名稱。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions.StateDataFormat">
+      <summary>取得或設定類型，用以保護中介軟體所處理資料的安全。</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider">
+      <summary>預設 <see cref="T:Microsoft.Owin.Security.Twitter.ITwitterAuthenticationProvider" /> 實作。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider" /></summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.Authenticated(Microsoft.Owin.Security.Twitter.TwitterAuthenticatedContext)">
+      <summary>每當 Twitter 成功驗證使用者時叫用</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+      <param name="context">包含登入工作階段以及使用者 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 的相關資訊。</param>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.OnAuthenticated">
+      <summary>取得或設定在叫用 Authenticated 方法時叫用的函數。</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.OnReturnEndpoint">
+      <summary>取得或設定在叫用 ReturnEndpoint 方法時叫用的函數。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterAuthenticationProvider.ReturnEndpoint(Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext)">
+      <summary>在 <see cref="T:System.Security.Claims.ClaimsIdentity" /> 儲存在本機 cookie 且將瀏覽器重新導向至原先要求之 URL 前叫用。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task" />，表示完成的作業。</returns>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext">
+      <summary>提供中介軟體提供者的內容資訊。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext.#ctor(Microsoft.Owin.IOwinContext,Microsoft.Owin.Security.AuthenticationTicket)">
+      <summary>初始化新的 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterReturnEndpointContext" />。</summary>
+      <param name="context">OWIN 環境</param>
+      <param name="ticket">驗證票券</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.AccessToken">
+      <summary>Twitter 存取語彙基元</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.AccessToken.#ctor"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.AccessToken.ScreenName">
+      <summary>取得或設定 Twitter 畫面名稱</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.AccessToken.UserId">
+      <summary>取得或設定 Twitter 使用者識別碼</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.RequestToken">
+      <summary>Twitter 要求語彙基元</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestToken.#ctor"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.CallbackConfirmed"></member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.Properties">
+      <summary>取得或設定通用驗證屬性的屬性包</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.Token">
+      <summary>取得或設定 Twitter 語彙基元</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.RequestToken.TokenSecret">
+      <summary>取得或設定 Twitter 語彙基元密碼</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer">
+      <summary>序列化及還原序列化 Twitter 要求和存取語彙基元，以便其他應用程式元件使用。</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.#ctor"></member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Deserialize(System.Byte[])">
+      <summary>還原序列化要求語彙基元</summary>
+      <returns>Twitter 要求語彙基元</returns>
+      <param name="data">包含序列化語彙基元的位元組陣列</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Read(System.IO.BinaryReader)">
+      <summary>從一連串的位元組讀取 Twitter 要求語彙基元。由 <see cref="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Deserialize(System.Byte[])" /> 方法使用。</summary>
+      <returns>語彙基元</returns>
+      <param name="reader">用於讀取語彙基元位元組的讀取器</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Serialize(Microsoft.Owin.Security.Twitter.Messages.RequestToken)">
+      <summary>序列化要求語彙基元</summary>
+      <returns>包含序列化語彙基元的位元組陣列</returns>
+      <param name="model">要序列化的語彙基元</param>
+    </member>
+    <member name="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Write(System.IO.BinaryWriter,Microsoft.Owin.Security.Twitter.Messages.RequestToken)">
+      <summary>將 Twitter 要求語彙基元寫入為一連串的位元組。由 <see cref="M:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer.Serialize(Microsoft.Owin.Security.Twitter.Messages.RequestToken)" /> 方法使用。</summary>
+      <param name="writer">用於寫入語彙基元位元組的寫入器</param>
+      <param name="token">要寫入的語彙基元</param>
+    </member>
+    <member name="T:Microsoft.Owin.Security.Twitter.Messages.Serializers">
+      <summary>提供要求語彙基元序列化程式的存取</summary>
+    </member>
+    <member name="P:Microsoft.Owin.Security.Twitter.Messages.Serializers.RequestToken">
+      <summary>取得或設定可靜態取得的序列化程式物件。此屬性的值預設為 <see cref="T:Microsoft.Owin.Security.Twitter.Messages.RequestTokenSerializer" />。</summary>
+    </member>
+    <member name="T:Owin.TwitterAuthenticationExtensions">
+      <summary>使用 <see cref="T:Microsoft.Owin.Security.Twitter.TwitterAuthenticationMiddleware" /> 的擴充方法</summary>
+    </member>
+    <member name="M:Owin.TwitterAuthenticationExtensions.UseTwitterAuthentication(Owin.IAppBuilder,Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions)">
+      <summary>驗證使用 Twitter 的使用者</summary>
+      <returns>已更新的 <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">傳遞到設定方法的 <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="options">中介軟體組態選項</param>
+    </member>
+    <member name="M:Owin.TwitterAuthenticationExtensions.UseTwitterAuthentication(Owin.IAppBuilder,System.String,System.String)">
+      <summary>驗證使用 Twitter 的使用者</summary>
+      <returns>已更新的 <see cref="T:Owin.IAppBuilder" /></returns>
+      <param name="app">傳遞到設定方法的 <see cref="T:Owin.IAppBuilder" /></param>
+      <param name="consumerKey">Twitter 核發的取用者索引鍵</param>
+      <param name="consumerSecret">Twitter 核發的取用者密碼</param>
+    </member>
+  </members>
+</doc>
