@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WecareMVC.Models;
+using WecareMVC.ViewModels;
 
 namespace WecareMVC.Controllers
 {
@@ -40,6 +41,17 @@ namespace WecareMVC.Controllers
             var album = storeDB.Albums.Find(id);
 
             return View(album);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GenreMenu()   //左側分類Menu
+        {            
+            //var genres = storeDB.Genres;
+            var genres = from p in storeDB.Genres
+                         select new GenreViewModel
+                         {  AlbumsCount = p.Albums.Count, GenreName =p.Name };
+            var model = genres.ToList();         
+            return PartialView("_GenreMenu", model);
         }
     }
 }

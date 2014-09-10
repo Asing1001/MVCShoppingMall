@@ -29,5 +29,6 @@ namespace WecareMVC.Models
         public string AlbumArtUrl { get; set; }
         public virtual Genre Genre { get; set; }
         public virtual Artist Artist { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }  //讓album可以連到orderdetail獲取數量，以呈現熱賣的商品
     }
 }

@@ -1,13 +1,19 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using WecareMVC.Models;
+using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Web;
 
-namespace WecareMVC
+namespace IdentitySample.Models
 {
-    // 設定此應用程式中使用的應用程式使用者管理員。UserManager 在 ASP.NET Identity 中定義且由應用程式中使用。
+    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -16,16 +22,17 @@ namespace WecareMVC
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
+            IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // 設定使用者名稱的驗證邏輯
+            // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
-            // 設定密碼的驗證邏輯
+            // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
@@ -34,25 +41,44 @@ namespace WecareMVC
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
-            // 註冊雙因素驗證提供者。此應用程式使用手機和電子郵件接收驗證碼以驗證使用者
-            // 您可以在這裡寫下自己的提供者和外掛程式。
+            // Configure user lockout defaults
+            manager.UserLockoutEnabledByDefault = true;
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
+            // You can write your own provider and plug in here.
             manager.RegisterTwoFactorProvider("PhoneCode", new PhoneNumberTokenProvider<ApplicationUser>
             {
                 MessageFormat = "Your security code is: {0}"
             });
             manager.RegisterTwoFactorProvider("EmailCode", new EmailTokenProvider<ApplicationUser>
             {
-                Subject = "安全碼",
-                BodyFormat = "Your security code is: {0}"
+                Subject = "SecurityCode",
+                BodyFormat = "Your security code is {0}"
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider =
+                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+    }
+
+    // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly
+    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    {
+        public ApplicationRoleManager(IRoleStore<IdentityRole,string> roleStore)
+            : base(roleStore)
+        {
+        }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
         }
     }
 
@@ -60,8 +86,36 @@ namespace WecareMVC
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // 將您的電子郵件服務外掛到這裡以傳送電子郵件。
-            return Task.FromResult(0);
+            // Credentials:
+            var credentialUserName = "cecmwecare@gmail.com";
+            var sentFrom = "cecmwecare@gmail.com";
+            var pwd = "hxgjijoubuaozjny";
+
+            // Configure the client:
+            System.Net.Mail.SmtpClient client =
+                new System.Net.Mail.SmtpClient("smtp.gmail.com");
+
+            client.Port = 587;
+            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+
+            // Create the credentials:
+            System.Net.NetworkCredential credentials =
+                new System.Net.NetworkCredential(credentialUserName, pwd);
+
+            client.EnableSsl = true;
+            client.Credentials = credentials;
+
+            // Create the message:
+            var mail =
+                new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+
+            mail.IsBodyHtml = true;
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+
+            // Send:
+            return client.SendMailAsync(mail);
         }
     }
 
@@ -69,8 +123,64 @@ namespace WecareMVC
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // 將您的 SMS 服務外掛到這裡以傳送簡訊。
+            // Plug in your sms service here to send a text message.
             return Task.FromResult(0);
+        }
+    }
+
+    // This is useful if you do not want to tear down the database each time you run the application.
+    // public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    // This example shows you how to create a new database if the Model changes
+    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext> 
+    {
+        protected override void Seed(ApplicationDbContext context) {
+            InitializeIdentityForEF(context);
+            base.Seed(context);
+        }
+
+        //Create User=Admin@Admin.com with password=Admin@123456 in the Admin role        
+        public static void InitializeIdentityForEF(ApplicationDbContext db) {
+            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+            const string name = "admin@admin.com";
+            const string password = "P@ssw0rd";
+            const string roleName = "Admin";
+
+            //Create Role Admin if it does not exist
+            var role = roleManager.FindByName(roleName);
+            if (role == null) {
+                role = new IdentityRole(roleName);
+                var roleresult = roleManager.Create(role);
+            }
+
+            var user = userManager.FindByName(name);
+            if (user == null) {
+                user = new ApplicationUser { UserName = name, Email = name };
+                var result = userManager.Create(user, password);
+                result = userManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            // Add user admin to Role Admin if not already added
+            var rolesForUser = userManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name)) {
+                var result = userManager.AddToRole(user.Id, role.Name);
+            }
+        }
+    }
+
+    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
+    {
+        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager) : 
+            base(userManager, authenticationManager) { }
+
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
+        {
+            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+        }
+
+        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+        {
+            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
 }

@@ -1,16 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,23 +17,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("WecareStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("WecareStore", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                     <li>@Html.ActionLink("商店", "Index", "Store")</li>
-                    <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+                    @*<li>@Html.ActionLink("購物車", "Contact", "Home")</li>*@
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("權限管理", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("使用者管理", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("商品管理", "Index", "StoreManager")</li>
+                    }
+                </ul>               
+                @Html.Partial("_LoginPartial")  @*放login  logout 的partial view*@
+                @{Html.RenderAction("CartSummary", "ShoppingCart");}   @*放購物車(數量)*@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
-        @RenderBody()
+        <div class="row">
+         <div class="col-xs-3">@{Html.RenderAction("GenreMenu", "Store");}</div>
+
+       <div class="col-xs-9">@RenderBody()</div> 
+        </div>
+       
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            <p>&copy; @DateTime.Now.Year - WecareStore</p>
         </footer>
     </div>
 
@@ -43,6 +55,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
-@*<a href="/" id="current" class="navbar-brand">Home</a>
-<a href="/Store/" class="navbar-brand">Store</a>*@

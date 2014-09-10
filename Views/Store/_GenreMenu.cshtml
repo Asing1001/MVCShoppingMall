@@ -1,0 +1,14 @@
+﻿@*@model IEnumerable<WecareMVC.Models.Genre>*@
+@model  IEnumerable<WecareMVC.ViewModels.GenreViewModel>
+
+<div id="categories" class="list-group">
+@foreach (var genre in Model)
+{
+    <a href="/Store/Browse?Genre=@genre.GenreName" class="list-group-item">
+    <span class="badge">@genre.AlbumsCount </span>
+    @genre.GenreName
+    </a>
+
+   @*@Html.ActionLink(genre.Name, "Browse", "Store", new { Genre = genre.Name }, htmlAttributes: new { @class="list-group-item list-group-item-success" })*@
+}
+</div>

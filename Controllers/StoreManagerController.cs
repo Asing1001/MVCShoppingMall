@@ -11,7 +11,7 @@ using WecareMVC.Models;
 
 namespace WecareMVC.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Admin")]
     public class StoreManagerController : Controller
     {
         private MusicStoreEntities db = new MusicStoreEntities();

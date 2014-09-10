@@ -1,11 +1,10 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace WecareMVC
+namespace IdentitySample
 {
     public class BundleConfig
     {
-        // 如需「搭配」的詳細資訊，請瀏覽 http://go.microsoft.com/fwlink/?LinkId=301862
+        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -14,8 +13,8 @@ namespace WecareMVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // 使用開發版本的 Modernizr 進行開發並學習。然後，當您
-            // 準備好實際執行時，請使用 http://modernizr.com 上的建置工具，只選擇您需要的測試。
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -24,12 +23,8 @@ namespace WecareMVC
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.css",  //bootstrap.css
                       "~/Content/site.css"));
-
-            // 將 EnableOptimizations 設為 false 以進行偵錯。如需詳細資訊，
-            // 請造訪 http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
         }
     }
 }

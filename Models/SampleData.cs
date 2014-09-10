@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using WecareMVC.Models;
 
-namespace MvcMusicStore.Models
+namespace WecareMVC.Models
 {
     public class SampleData : DropCreateDatabaseIfModelChanges<MusicStoreEntities>
     {

@@ -21,10 +21,12 @@
         // Code First 模型的詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=390109。
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
-        public virtual DbSet<Genre> Genres { get; set; }
-        public virtual DbSet<Album> Albums { get; set; }
-
-        public System.Data.Entity.DbSet<WecareMVC.Models.Artist> Artists { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 
     //public class MyEntity

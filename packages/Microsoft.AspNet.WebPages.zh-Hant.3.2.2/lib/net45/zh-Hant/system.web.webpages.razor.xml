@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.WebPages.Razor</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.WebPages.Razor.CompilingPathEventArgs">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。表示編譯包含事件資料的路徑的基本類別。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.CompilingPathEventArgs.#ctor(System.String,System.Web.WebPages.Razor.WebPageRazorHost)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。初始化 <see cref="T:System.Web.WebPages.Razor.CompilingPathEventArgs" /> 類別的新執行個體。</summary>
+      <param name="virtualPath">虛擬路徑的字串。</param>
+      <param name="host">網頁 Razor 的主機。</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.CompilingPathEventArgs.Host">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定網頁 Razor 的主機。</summary>
+      <returns>網頁 Razor 的主機。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.CompilingPathEventArgs.VirtualPath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得網頁的虛擬路徑。</summary>
+      <returns>網頁的虛擬路徑。</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.PreApplicationStartCode">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.PreApplicationStartCode.Start">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.RazorBuildProvider">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。表示 Razor 的建置提供者。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.#ctor">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。初始化 <see cref="T:System.Web.WebPages.Razor.RazorBuildProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.AddVirtualPathDependency(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。將虛擬路徑相依性新增到集合。</summary>
+      <param name="dependency">要新增的虛擬路徑相依性。</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.AssemblyBuilder">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得 Razor 還境的組件建立器。</summary>
+      <returns>組件建立器。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.CodeCompilerType">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得 Razor 還境的編譯器建立器。</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CodeGenerationCompleted">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。完成產生程式碼時發生。</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CodeGenerationStarted">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。開始產生程式碼時發生。</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CompilingPath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。編譯新虛擬路徑時發生。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.CreateHost">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以 Web 設定為基礎建立 Razor 引擎主機執行個體。</summary>
+      <returns>Razor 引擎主機執行個體。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。使用提供的組件建立器產生程式碼。</summary>
+      <param name="assemblyBuilder">組件建立器。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得已產生程式碼的類型。</summary>
+      <returns>已產生程式碼的類型。</returns>
+      <param name="results">程式碼編譯的結果。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GetHostFromConfig">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以 Web 設定為基礎建立 Razor 引擎主機執行個體。</summary>
+      <returns>Razor 引擎主機執行個體。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.InternalOpenReader">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。開啟內部文字讀取器。</summary>
+      <returns>內部文字讀取器。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.OnBeforeCompilePath(System.Web.WebPages.Razor.CompilingPathEventArgs)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。引發 CompilingPath 事件。</summary>
+      <param name="args">CompilingPath 事件提供的資料。</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.VirtualPath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得來源程式碼的虛擬路徑。</summary>
+      <returns>來源程式碼的虛擬路徑。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.VirtualPathDependencies">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得相依性的虛擬路徑集合。</summary>
+      <returns>相依性的虛擬路徑集合。</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebCodeRazorHost">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。表示網頁的 Web 程式碼 Razor 主機。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.#ctor(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。初始化 <see cref="T:System.Web.WebPages.Razor.WebCodeRazorHost" /> 類別的新執行個體。</summary>
+      <param name="virtualPath">虛擬路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.#ctor(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。初始化 <see cref="T:System.Web.WebPages.Razor.WebCodeRazorHost" /> 類別的新執行個體。</summary>
+      <param name="virtualPath">虛擬路徑。</param>
+      <param name="physicalPath">實體路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.GetClassName(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。傳回此執行個體的類別名稱。</summary>
+      <returns>此執行個體的類別名稱。</returns>
+      <param name="virtualPath">虛擬路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.PostProcessGeneratedCode(System.Web.Razor.Generator.CodeGeneratorContext)">
+      <summary>產生 Web 程式碼 Razor 主機的張貼處理程式碼。</summary>
+      <param name="context">產生器程式碼內容。</param>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebPageRazorHost">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。表示網頁上的 Razor 主機。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.#ctor(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。使用指定的虛擬路徑，初始化 <see cref="T:System.Web.WebPages.Razor.WebPageRazorHost" /> 類別的新執行個體。</summary>
+      <param name="virtualPath">虛擬檔案路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.#ctor(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。使用指定的虛擬和實體檔案路徑，初始化 <see cref="T:System.Web.WebPages.Razor.WebPageRazorHost" /> 類別的新執行個體。</summary>
+      <param name="virtualPath">虛擬檔案路徑。</param>
+      <param name="physicalPath">實體檔案路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.AddGlobalImport(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。在網頁上新增全域匯入。</summary>
+      <param name="ns">通知服務名稱。</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.CodeLanguage">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得<see cref="T:System.Web.Razor.RazorCodeLanguage" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Razor.RazorCodeLanguage" />。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.CreateMarkupParser">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。建立標記剖析器。</summary>
+      <returns>標記剖析器。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultBaseClass">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定 DefaultBaseClass 的值。</summary>
+      <returns>DefaultBaseClass 的 值。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultClassName">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定預設類別的名稱。</summary>
+      <returns>預設類別的名稱。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultDebugCompilation">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定指出偵錯編譯是否設為預設的值。</summary>
+      <returns>如果偵錯編譯設為預設，為 true，否則為 false。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultPageBaseClass">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定預設頁面的基本類型。</summary>
+      <returns>預設頁面的基本名稱。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetClassName(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。將類別名稱擷取至指定的網頁所在處。</summary>
+      <returns>指定的網頁所在處的類別名稱。</returns>
+      <param name="virtualPath">虛擬檔案路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetCodeLanguage">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得網頁中指定的程式碼語言。</summary>
+      <returns>網頁中指定的程式碼語言。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetGlobalImports">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得網頁的全域匯入。</summary>
+      <returns>網頁的全域匯入。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.InstrumentedSourceFilePath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得或設定檢測來源的檔案路徑。</summary>
+      <returns>檢測來源的檔案路徑。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.IsSpecialPage">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得值，這個值表示網頁是否為特殊頁面。</summary>
+      <returns>如果網頁為特殊頁面，則為 true，否則為 false。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.PhysicalPath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得 Razor 主機的實體檔案系統路徑。</summary>
+      <returns>Razor 主機的實體檔案系統路徑。</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.PostProcessGeneratedCode(System.Web.Razor.Generator.CodeGeneratorContext)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得處理後產生的程式碼。</summary>
+      <param name="context">
+        <see cref="T:System.Web.Razor.Generator.CodeGeneratorContext" />。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.RegisterSpecialFile(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以指定檔名和基本類型名稱註冊特殊檔案。</summary>
+      <param name="fileName">檔案名稱。</param>
+      <param name="baseTypeName">基本類型名稱。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.RegisterSpecialFile(System.String,System.Type)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以指定檔名和基本類型註冊特殊檔案。</summary>
+      <param name="fileName">檔案名稱。</param>
+      <param name="baseType">基本檔案的類型。</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.VirtualPath">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。取得虛擬檔案路徑。</summary>
+      <returns>虛擬檔案路徑。</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebRazorHostFactory">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。建立主機檔案的執行個體。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.#ctor">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。初始化 <see cref="T:System.Web.WebPages.Razor.WebRazorHostFactory" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.ApplyConfigurationToHost(System.Web.WebPages.Razor.Configuration.RazorPagesSection,System.Web.WebPages.Razor.WebPageRazorHost)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。從設定檔載入服務描述資訊並套用至主機。</summary>
+      <param name="config">設定。</param>
+      <param name="host">網頁 Razor 主機。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateDefaultHost(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以指定虛擬路徑建立預設主機。</summary>
+      <returns>預設主機。</returns>
+      <param name="virtualPath">檔案的虛擬路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateDefaultHost(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。以指定虛擬和實體路徑建立預設主機。</summary>
+      <returns>預設主機。</returns>
+      <param name="virtualPath">檔案的虛擬路徑。</param>
+      <param name="physicalPath">實體檔案系統路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHost(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。建立 Razor 主機。</summary>
+      <returns>Razor 主機。</returns>
+      <param name="virtualPath">目標檔案的虛擬路徑。</param>
+      <param name="physicalPath">目標檔案的實體路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。從設定建立主機。</summary>
+      <returns>從設定建立主機。</returns>
+      <param name="virtualPath">目標檔案的虛擬路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。從設定建立主機。</summary>
+      <returns>從設定建立主機。</returns>
+      <param name="virtualPath">檔案的虛擬路徑。</param>
+      <param name="physicalPath">實體檔案系統路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。從設定建立主機。</summary>
+      <returns>從設定建立主機。</returns>
+      <param name="config">設定。</param>
+      <param name="virtualPath">檔案的虛擬路徑。</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup,System.String,System.String)">
+      <summary>這個類型/成員可以支援 .NET Framework 基礎結構，但不能直接使用於您的程式碼中。從設定建立主機。</summary>
+      <returns>從設定建立主機。</returns>
+      <param name="config">設定。</param>
+      <param name="virtualPath">檔案的虛擬路徑。</param>
+      <param name="physicalPath">實體檔案系統路徑。</param>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.HostSection">
+      <summary>提供 host 組態區段的組態系統支援。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.HostSection.#ctor">
+      <summary>初始化 <see cref="T:System.Web.WebPages.Razor.Configuration.HostSection" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.HostSection.FactoryType">
+      <summary>取得或設定主機 Factory。</summary>
+      <returns>主機 Factory。</returns>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.HostSection.SectionName">
+      <summary>表示 Razor 主機環境的組態區段名稱。</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.RazorPagesSection">
+      <summary>提供 pages 組態區段的組態系統支援。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.RazorPagesSection.#ctor">
+      <summary>初始化 <see cref="T:System.Web.WebPages.Razor.Configuration.RazorPagesSection" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorPagesSection.Namespaces">
+      <summary>取得或設定命名空間的集合，這個命名空間會加入至目前應用程式的「網頁」頁面中。</summary>
+      <returns>命名空間的集合。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorPagesSection.PageBaseType">
+      <summary>取得或設定頁面基底類型類別的名稱。</summary>
+      <returns>頁面基底類型類別的名稱。</returns>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.RazorPagesSection.SectionName">
+      <summary>表示 Razor 頁面的組態區段名稱。</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup">
+      <summary>提供 system.web.webPages.razor 組態區段的組態系統支援。</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.#ctor">
+      <summary>初始化 <see cref="T:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.GroupName">
+      <summary>表示 Razor Web 區段的組態區段名稱。包含靜態的唯讀字串「system.web.webPages.razor」。</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.Host">
+      <summary>取得或設定 system.web.webPages.razor 區段群組的 host 值。</summary>
+      <returns>主機值。</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.Pages">
+      <summary>取得或設定 system.web.webPages.razor 區段中 pages 元素的值。</summary>
+      <returns>pages 元素值。</returns>
+    </member>
+  </members>
+</doc>
