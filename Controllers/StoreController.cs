@@ -15,7 +15,8 @@ namespace WecareMVC.Controllers
         // GET: /Store/
         public ActionResult Index()
         {
-            var genres = storeDB.Genres.ToList();
+            var genres = from p in storeDB.Genres
+                         select p;
             return View(genres);
             //var genres = new List<Genre> { 
             //    new Genre { Name = "Disco" }, 
@@ -23,6 +24,16 @@ namespace WecareMVC.Controllers
             //    new Genre { Name = "Rock" } 
             //};
             //return View(genres);  
+        }
+
+        private List<Album> GetTopSellingAlbums(int count)
+        {
+            // Group the order details by album and return
+            // the albums with the highest count
+            return storeDB.Albums
+                .OrderByDescending(a => a.OrderDetails.Count())
+                .Take(count)
+                .ToList();
         }
         //
         // GET: /Store/Browse?genre=Disco

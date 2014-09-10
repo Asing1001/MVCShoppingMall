@@ -1,18 +1,17 @@
 ﻿@model IdentitySample.Models.RoleViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "編輯";
 }
 
-<h2>Edit.</h2>
+<h2>編輯</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Roles.</h4>
+    <div class="form-horizontal">       
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
@@ -27,14 +26,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="儲存" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回到權限管理", "Index")
 </div>
 
 @section Scripts {

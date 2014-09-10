@@ -29,12 +29,13 @@ namespace WecareMVC.Controllers
         [HttpPost]
         public ActionResult AddressAndPayment(FormCollection values)
         {
-            var order = new Order();
+            var order = new Order {   };
+            
             TryUpdateModel(order);
 
             try
             {
-                if (string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase) == false)
+                if (string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     return View(order);
                 }

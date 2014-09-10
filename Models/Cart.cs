@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,10 @@ namespace WecareMVC.Models
         public int RecordId { get; set; }
         public string CartId { get; set; }
         public int AlbumId { get; set; }
+
+        [Required(AllowEmptyStrings = true, ErrorMessage = " ")]  //空白可以不顯示錯誤訊息 又可以不讓使用者輸空白
+        [Range(0, 100, ErrorMessage = "數量必須為 0 ~ 100")]
+        [DisplayName("數量")]
         public int Count { get; set; }
         public System.DateTime DateCreated { get; set; }
         public virtual Album Album { get; set; }

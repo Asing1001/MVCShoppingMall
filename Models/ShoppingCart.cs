@@ -14,14 +14,16 @@ namespace WecareMVC.Models
         public static ShoppingCart GetCart(HttpContextBase context)
         {
             var cart = new ShoppingCart();
-            cart.ShoppingCartId = cart.GetCartId(context);
+            cart.ShoppingCartId = cart.GetCartId(context);  //透過context  取得 context.Session[CartSessionKey]  給cartId
             return cart;
         }
+
         // Helper method to simplify shopping cart calls
         public static ShoppingCart GetCart(Controller controller)
         {
             return GetCart(controller.HttpContext);
         }
+
         public void AddToCart(Album album)
         {
             // Get the matching cart and album instances
@@ -50,6 +52,8 @@ namespace WecareMVC.Models
             // Save changes
             storeDB.SaveChanges();
         }
+
+
         public int RemoveFromCart(int id)
         {
             // Get the cart
@@ -61,23 +65,25 @@ namespace WecareMVC.Models
 
             if (cartItem != null)
             {
-                if (cartItem.Count > 1)
-                {
-                    cartItem.Count--;
-                    itemCount = cartItem.Count;
-                }
-                else
-                {
-                    storeDB.Carts.Remove(cartItem);
-                }
+                //if (cartItem.Count > 1)  一次減一個商品
+                //{
+                //    cartItem.Count--;
+                //    itemCount = cartItem.Count;
+                //}
+                //else
+                //{
+                     storeDB.Carts.Remove(cartItem);
+                //}
                 // Save changes
                 storeDB.SaveChanges();
             }
             return itemCount;
         }
-        public void EmptyCart()
+
+
+        public void EmptyCart()  
         {
-            var cartItems = storeDB.Carts.Where(
+            var cartItems = storeDB.Carts.Where(            //淨空購物車
                 cart => cart.CartId == ShoppingCartId);
 
             foreach (var cartItem in cartItems)
@@ -87,12 +93,15 @@ namespace WecareMVC.Models
             // Save changes
             storeDB.SaveChanges();
         }
-        public List<Cart> GetCartItems()
+
+        public List<Cart> GetCartItems()   //取得現在在購物車內的商品
         {
             return storeDB.Carts.Where(
                 cart => cart.CartId == ShoppingCartId).ToList();
         }
-        public int GetCount()
+
+
+        public int GetCount()   //取得商品數量，顯示在首頁
         {
             // Get the count of each item in the cart and sum them up
             int? count = (from cartItems in storeDB.Carts
@@ -101,7 +110,9 @@ namespace WecareMVC.Models
             // Return 0 if all entries are null
             return count ?? 0;
         }
-        public decimal GetTotal()
+
+
+        public decimal GetTotal() //取得總金額
         {
             // Multiply album price by count of that album to get 
             // the current price for each of those albums in the cart
@@ -111,26 +122,28 @@ namespace WecareMVC.Models
                               select (int?)cartItems.Count *
                               cartItems.Album.Price).Sum();
 
-            return total ?? decimal.Zero;
+            return total ?? decimal.Zero;  //若total是空值，則回傳0.00
         }
-        public int CreateOrder(Order order)
+
+        public int CreateOrder(Order order)   //把每一筆購買商品記錄到order中
         {
             decimal orderTotal = 0;
 
-            var cartItems = GetCartItems();
+            var cartItems = GetCartItems();  //先取得所有商品
             // Iterate over the items in the cart, 
             // adding the order details for each
-            foreach (var item in cartItems)
+            foreach (var item in cartItems)  //每筆存成orderDetail
             {
-                var orderDetail = new OrderDetail
+                var orderDetail = new OrderDetail   
                 {
                     AlbumId = item.AlbumId,
                     OrderId = order.OrderId,
                     UnitPrice = item.Album.Price,
                     Quantity = item.Count
                 };
+
                 // Set the order total of the shopping cart
-                orderTotal += (item.Count * item.Album.Price);
+                orderTotal += (item.Count * item.Album.Price);  //累計取得訂單總價
 
                 storeDB.OrderDetails.Add(orderDetail);
 
@@ -145,29 +158,31 @@ namespace WecareMVC.Models
             // Return the OrderId as the confirmation number
             return order.OrderId;
         }
+
         // We're using HttpContextBase to allow access to cookies.
         public string GetCartId(HttpContextBase context)
         {
-            if (context.Session[CartSessionKey] == null)
+            if (context.Session[CartSessionKey] == null)  
             {
                 if (!string.IsNullOrWhiteSpace(context.User.Identity.Name))
                 {
                     context.Session[CartSessionKey] =
-                        context.User.Identity.Name;
+                        context.User.Identity.Name;      //使用者已經登入，CartID直接設成userEmail
                 }
                 else
                 {
                     // Generate a new random GUID using System.Guid class
-                    Guid tempCartId = Guid.NewGuid();
+                    Guid tempCartId = Guid.NewGuid();   //給購物車隨機ID  因為使用者還未登入
                     // Send tempCartId back to client as a cookie
                     context.Session[CartSessionKey] = tempCartId.ToString();
                 }
             }
             return context.Session[CartSessionKey].ToString();
         }
+
         // When a user has logged in, migrate their shopping cart to
         // be associated with their username
-        public void MigrateCart(string UserEmail)
+        public void MigrateCart(string UserEmail)      //登入之後將上面隨機給的ID換成UserEmail
         {
             var shoppingCart = storeDB.Carts.Where(
                 c => c.CartId == ShoppingCartId);
@@ -177,6 +192,33 @@ namespace WecareMVC.Models
                 item.CartId = UserEmail;  //把cartid以email標註為某user的
             }
             storeDB.SaveChanges();
+        }
+
+        //用來更新數量
+        public int UpdateCartCount(int id, int cartCount)
+        {
+            // Get the cart 
+            var cartItem = storeDB.Carts.Single(
+                cart => cart.CartId == ShoppingCartId
+                && cart.RecordId == id);
+
+            int itemCount = 0;
+
+            if (cartItem != null)
+            {
+                if (cartCount > 0)
+                {
+                    cartItem.Count = cartCount;
+                    itemCount = cartItem.Count;
+                }
+                else
+                {
+                    storeDB.Carts.Remove(cartItem);
+                }
+                // Save changes 
+                storeDB.SaveChanges();
+            }
+            return itemCount;
         }
     }
 }

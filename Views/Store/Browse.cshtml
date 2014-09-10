@@ -4,7 +4,52 @@
     ViewBag.Title = "Browse";
 }
 
-<div class="genre">
+<div class="row">
+    <div class="col-xs-12"><h2>@Model.Name</h2> </div>
+    @helper Truncate(string input, int length)
+{
+    if (input.Length <= length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+    @foreach (var album in Model.Albums)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4" >
+            <div class="thumbnail" style="height:380px !important">           @*需要固定高度不然會跑掉*@
+                <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                <div class="caption">
+                    <h4 class="pull-right">@album.Price</h4>
+                    <h4>
+                        <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
+                            @Truncate(album.Title, 20)
+                        </a>
+                    </h4>
+                    <p>作者：@Truncate(album.Artist.Name, 25)</p>
+                    <p>@Truncate("敘述......................", 50)</p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">已賣出：@album.OrderDetails.Count() 件</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@*<div class="genre">
     <h3><em>@Model.Name</em> Albums</h3>
 
     <ul id="album-list">
@@ -20,6 +65,6 @@
             </li>
         }
     </ul>
-</div>
+</div>*@
 
 

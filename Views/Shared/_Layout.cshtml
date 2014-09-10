@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("商店", "Index", "Store")</li>
+                    <li>@Html.ActionLink("前往商店", "Index", "Store")</li>
                     @*<li>@Html.ActionLink("購物車", "Contact", "Home")</li>*@
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
@@ -38,10 +38,16 @@
     </div>
 
     <div class="container body-content">
-        <div class="row">
-         <div class="col-xs-3">@{Html.RenderAction("GenreMenu", "Store");}</div>
 
-       <div class="col-xs-9">@RenderBody()</div> 
+        <div class="row">
+            
+         <nav class="col-xs-12 col-sm-3">
+            <header class="lead"><h3>商品分類</h3></header>    @*區段標題header*@
+            @{Html.RenderAction("GenreMenu", "Store");}
+         </nav>
+
+       <section class="col-xs-12 col-sm-9">@RenderBody()</section> 
+        
         </div>
        
         <hr />

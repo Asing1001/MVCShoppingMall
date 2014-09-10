@@ -55,12 +55,12 @@ namespace IdentitySample
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-     appId: "351051355069147",
-     appSecret: "9def0cceec52a42a4c5f241b9be6b55e");
+            appId: "351051355069147",
+            appSecret: "9def0cceec52a42a4c5f241b9be6b55e");
 
-            //app.UseGoogleAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+           app.UseGoogleAuthentication(
+                clientId: "183168110639-fk7jh3ra2hm2sivjkafavn7t96iudlla.apps.googleusercontent.com",
+                clientSecret: "u_t8ctNMuctbCn4_3rAGD8aD");
         }
     }
 }

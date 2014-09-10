@@ -17,6 +17,7 @@ namespace IdentitySample.Controllers
 
             return View(albums);
         }
+
         private List<Album> GetTopSellingAlbums(int count)
         {
             // Group the order details by album and return

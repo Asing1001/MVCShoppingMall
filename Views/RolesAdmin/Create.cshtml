@@ -1,7 +1,7 @@
 ﻿@model IdentitySample.Models.RoleViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增權限";
 }
 
 <h2>Create.</h2>
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Role.</h4>
+        <h4>權限</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -33,7 +33,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回到權限管理", "Index")
 </div>
 
 @section Scripts {

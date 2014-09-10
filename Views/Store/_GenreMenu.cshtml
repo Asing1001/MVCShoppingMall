@@ -2,6 +2,7 @@
 @model  IEnumerable<WecareMVC.ViewModels.GenreViewModel>
 
 <div id="categories" class="list-group">
+    @*<a href="#" class="list-group-item active" ></a>*@
 @foreach (var genre in Model)
 {
     <a href="/Store/Browse?Genre=@genre.GenreName" class="list-group-item">

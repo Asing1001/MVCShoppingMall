@@ -50,7 +50,8 @@ namespace WecareMVC.Controllers
             public ActionResult RemoveFromCart(int id)
             {
                 // Remove the item from the cart
-                var cart = ShoppingCart.GetCart(this.HttpContext);
+                var cart = ShoppingCart.GetCart(this.HttpContext);  
+                //傳送HttpContext透過context.Session[CartSessionKey]取得某cartId的cart　
 
                 // Get the name of the album to display confirmation
                 string albumName = storeDB.Carts
@@ -63,7 +64,7 @@ namespace WecareMVC.Controllers
                 var results = new ShoppingCartRemoveViewModel
                 {
                     Message = Server.HtmlEncode(albumName) +
-                        " has been removed from your shopping cart.",
+                        "已從購物車中移除",
                     CartTotal = cart.GetTotal(),
                     CartCount = cart.GetCount(),
                     ItemCount = itemCount,
@@ -80,6 +81,52 @@ namespace WecareMVC.Controllers
 
                 ViewData["CartCount"] = cart.GetCount();
                 return PartialView("_CartSummary");
+            }
+
+            [HttpPost]
+            public ActionResult UpdateCartCount(int id, int cartCount)
+            {
+                ShoppingCartRemoveViewModel results = null;
+                try
+                {
+                    // Get the cart 
+                    var cart = ShoppingCart.GetCart(this.HttpContext);
+
+                    // Get the name of the album to display confirmation 
+                    string albumName = storeDB.Carts
+                        .Single(item => item.RecordId == id).Album.Title;
+
+                    // Update the cart count 
+                    int itemCount = cart.UpdateCartCount(id, cartCount);
+
+                    //Prepare messages
+                    string msg =  Server.HtmlEncode(albumName) +
+                            " 的數量已更新！ ";
+                    if (itemCount == 0) msg = Server.HtmlEncode(albumName) +
+                            " 已移除！ ";
+                    //
+                    // Display the confirmation message 
+                    results = new ShoppingCartRemoveViewModel
+                    {
+                        Message = msg,
+                        CartTotal = cart.GetTotal(),
+                        CartCount = cart.GetCount(),
+                        ItemCount = itemCount,
+                        DeleteId = id
+                    };
+                }
+                catch
+                {
+                    results = new ShoppingCartRemoveViewModel
+                    {
+                        Message = "錯誤的輸入數量！",
+                        CartTotal = -1,
+                        CartCount = -1,
+                        ItemCount = -1,
+                        DeleteId = id
+                    };
+                }
+                return Json(results);
             }
         }
     }
