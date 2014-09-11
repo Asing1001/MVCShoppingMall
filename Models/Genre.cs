@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,22 +9,23 @@ namespace WecareMVC.Models
 {
     public class Genre //: IEnumerable
     {
+        [Key]
         public int GenreId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; }        
         public List<Album> Albums { get; set; }
 
 
 
-        public IEnumerable<Album> GetTopAlbum(int count)
-        {
-            MusicStoreEntities db = new MusicStoreEntities();
-            var Albums = db.Albums.Where(a => a.GenreId == GenreId).
-                OrderByDescending(a => a.OrderDetails.Count())
-                .Take(count)
-                .ToList();
-            return Albums;
-        }
+        //public IEnumerable<Album> GetTopAlbum(int count)
+        //{
+        //    MusicStoreEntities db = new MusicStoreEntities();
+        //    var Albums = db.Albums.Where(a => a.GenreId == GenreId).
+        //        OrderByDescending(a => a.OrderDetails.Count())
+        //        .Take(count)
+        //        .ToList();
+        //    return Albums;
+        //}
     }
 
     public static class GenreExtension

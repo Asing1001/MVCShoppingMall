@@ -15,8 +15,13 @@ namespace WecareMVC.Controllers
         // GET: /Store/
         public ActionResult Index()
         {
-            var genres = from p in storeDB.Genres
-                         select p;
+            //var gen = new Genre();
+            //gen.GetTopAlbum(5);
+
+           // var g = storeDB.Genres.First().GetTopAlbum(5);
+
+            var genres = storeDB.Genres.ToList();
+                         
             return View(genres);
             //var genres = new List<Genre> { 
             //    new Genre { Name = "Disco" }, 
