@@ -38,16 +38,14 @@
 
     </div>
 </div>
-<script type="text/javascript">
-$('.carousel').carousel({
-  interval: 1500
-})
-</script>
+@*<script type="text/javascript">
+
+</script>*@
 @*end of top slider*@
 
 @*begin top 5 sales*@
 <div class="row">
-    <h3>Top5 熱賣商品</h3> 
+    <h3 class="text-danger col-xs-12">Top5 熱賣商品</h3> 
 @helper Truncate(string input, int length)
 {
     if (input.Length <= length)
@@ -63,17 +61,17 @@ $('.carousel').carousel({
     @foreach (var album in Model)
     { 
     <div class="col-sm-4 col-lg-4 col-md-4" >
-        <div class="thumbnail" style="height:380px !important">
+        <div class="thumbnail" style="height:400px !important">
             <img alt="@album.Title" src="@album.AlbumArtUrl" />
             <div class="caption">
-                <h4 class="pull-right">@album.Price</h4>
+                <h4 class="pull-right"><s>$ @(album.Price + 3)</s></h4>
                 <h4>
                     <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
-                        @Truncate(album.Title, 20)
+                        @Truncate(album.Title, 15)
                     </a>
                 </h4>
-                <p>作者：@Truncate(album.Artist.Name, 25)</p>
-                <p>@Truncate("敘述......................", 50)</p>
+                @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@
+                <p class="text-danger">優惠價：$ @(album.Price)</p>
             </div>
             <div class="ratings">
                 <p class="pull-right">已賣出：@album.OrderDetails.Count() 件</p>

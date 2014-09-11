@@ -31,27 +31,29 @@
                         <li>@Html.ActionLink("使用者管理", "Index", "UsersAdmin")</li>
                         <li>@Html.ActionLink("商品管理", "Index", "StoreManager")</li>
                     }
-                </ul>               
-                @Html.Partial("_LoginPartial")  @*放login  logout 的partial view*@
-                @Html.Partial("_ChangeTheme")
-                @{Html.RenderAction("CartSummary", "ShoppingCart");}   @*放購物車(數量)*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">                    
+                    @Html.Partial("_LoginPartial")  @*放login  logout 的partial view*@
+                    @{Html.RenderAction("CartSummary", "ShoppingCart");}   @*放購物車(數量)*@
+                    @Html.Partial("_ChangeTheme")
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-
-        <div class="row">
-            
-         <nav class="col-xs-12 col-sm-3">
-            <header class="lead"><h3>商品分類</h3></header>    @*區段標題header*@
-            @{Html.RenderAction("GenreMenu", "Store");}
-         </nav>
-
-       <section class="col-xs-12 col-sm-9">@RenderBody()</section> 
+    <div class="container" style="margin-top:70px; ">
         
+        <div class="row">
+
+            <nav class="col-xs-12 col-sm-3">
+                <header class="lead"><h3>商品分類</h3></header>    @*區段標題header*@
+                @{Html.RenderAction("GenreMenu", "Store");}
+            </nav>
+
+            <section class="col-xs-12 col-sm-9">@RenderBody()</section>
+
         </div>
-       
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - WecareStore</p>
@@ -65,25 +67,22 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#RedMond').click(function () {
+
+            $('#myTheme>li>a').click(function () {
                 $.ajax({
-                    url: "/Home/LoadTheme/?Theme=" + "RedMond",
+                    url: "/Home/LoadTheme/?Theme=" + $(this).text(),
                     success: function (data) {
                         $("link[rel=stylesheet]").attr({ href: data });
                         return false;
                     }
                 })
-            });
-            $('#Default').click(function () {
-                $.ajax({
-                    url: "/Home/LoadTheme",
-                    success: function (data) {
-                        $("link[rel=stylesheet]").attr({ href: data });
-                        return false;
-                    }
-                })
-            });
+            })
+
         });
+
+        $('.carousel').carousel({
+            interval: 1500
+        })
     </script>
 </body>
 </html>

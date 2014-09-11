@@ -322,3 +322,4 @@ C:\Users\Andy\Desktop\WecareMVC\MVCShoppingCart\bin\zh-Hant\System.Web.WebPages.
 C:\Users\Andy\Desktop\WecareMVC\MVCShoppingCart\obj\Debug\WecareMVC.dll
 C:\Users\Andy\Desktop\WecareMVC\MVCShoppingCart\obj\Debug\WecareMVC.pdb
 C:\Users\Andy\Desktop\WecareMVC\MVCShoppingCart\obj\Debug\WecareMVC.csprojResolveAssemblyReference.cache
+C:\Users\III\Desktop\WecareMVC\MVCShoppingCart\obj\Debug\WecareMVC.csprojResolveAssemblyReference.cache

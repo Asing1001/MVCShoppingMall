@@ -25,14 +25,17 @@ namespace IdentitySample.Controllers
         public string LoadTheme(string Theme = null)
         {
             string sLocation = "/Content/";
-            if (Theme == null)
+         
+            if (Theme == null || Theme=="Default")
             {
                 sLocation += "bootstrap.css";
             }
-            else if (Theme == "RedMond")
+            else 
             {
-                sLocation += "bootstrap_United.css";
-            }
+                sLocation += "theme/" +Theme+".css";
+            }   
+
+
             HttpContext.Application["Theme"] = sLocation;
             return HttpContext.Application["Theme"] as string;
         }

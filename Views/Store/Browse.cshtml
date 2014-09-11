@@ -21,17 +21,18 @@
     @foreach (var album in Model.Albums)
     {
         <div class="col-sm-4 col-lg-4 col-md-4" >
-            <div class="thumbnail" style="height:380px !important">           @*需要固定高度不然會跑掉*@
+            <div class="thumbnail" style="height:400px !important">
+                @*需要固定高度不然會跑掉*@
                 <img alt="@album.Title" src="@album.AlbumArtUrl" />
                 <div class="caption">
-                    <h4 class="pull-right">@album.Price</h4>
+                    <h4 class="pull-right"><s>$ @(album.Price+3)</s></h4>
                     <h4>
                         <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
-                            @Truncate(album.Title, 20)
+                            @Truncate(album.Title, 15)
                         </a>
                     </h4>
-                    <p>作者：@Truncate(album.Artist.Name, 25)</p>
-                    <p>@Truncate("敘述......................", 50)</p>
+                    @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@
+                    <p class="text-danger">優惠價：$ @(album.Price)</p>
                 </div>
                 <div class="ratings">
                     <p class="pull-right">已賣出：@album.OrderDetails.Count() 件</p>

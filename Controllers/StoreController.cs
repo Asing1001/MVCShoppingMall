@@ -59,6 +59,7 @@ namespace WecareMVC.Controllers
         {            
             //var genres = storeDB.Genres;
             var genres = from p in storeDB.Genres
+                         orderby p.Name ascending
                          select new GenreViewModel
                          {  AlbumsCount = p.Albums.Count, GenreName =p.Name };
             var model = genres.ToList();         
