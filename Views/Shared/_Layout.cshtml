@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    @*@Styles.Render("~/Content/css")*@
+    <link href=@Convert.ToString( HttpContext.Current.Application["Theme"]) rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
     
 </head>
@@ -32,6 +33,7 @@
                     }
                 </ul>               
                 @Html.Partial("_LoginPartial")  @*放login  logout 的partial view*@
+                @Html.Partial("_ChangeTheme")
                 @{Html.RenderAction("CartSummary", "ShoppingCart");}   @*放購物車(數量)*@
             </div>
         </div>
@@ -56,8 +58,32 @@
         </footer>
     </div>
 
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#RedMond').click(function () {
+                $.ajax({
+                    url: "/Home/LoadTheme/?Theme=" + "RedMond",
+                    success: function (data) {
+                        $("link[rel=stylesheet]").attr({ href: data });
+                        return false;
+                    }
+                })
+            });
+            $('#Default').click(function () {
+                $.ajax({
+                    url: "/Home/LoadTheme",
+                    success: function (data) {
+                        $("link[rel=stylesheet]").attr({ href: data });
+                        return false;
+                    }
+                })
+            });
+        });
+    </script>
 </body>
 </html>

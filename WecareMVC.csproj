@@ -220,6 +220,7 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap_United.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapbackup.css" />
     <Content Include="Content\images\care.jpg" />
@@ -312,6 +313,7 @@
     <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\ShoppingCart\_CartSummary.cshtml" />
     <Content Include="Views\Store\_GenreMenu.cshtml" />
+    <Content Include="Views\Shared\_ChangeTheme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

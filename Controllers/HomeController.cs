@@ -15,7 +15,26 @@ namespace IdentitySample.Controllers
             // Get most popular albums
             var albums = GetTopSellingAlbums(5);
 
+            if (HttpContext.Application["Theme"] == null)
+                HttpContext.Application["Theme"] = LoadTheme();
+            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
             return View(albums);
+        }
+
+        public string LoadTheme(string Theme = null)
+        {
+            string sLocation = "/Content/";
+            if (Theme == null)
+            {
+                sLocation += "bootstrap.css";
+            }
+            else if (Theme == "RedMond")
+            {
+                sLocation += "bootstrap_United.css";
+            }
+            HttpContext.Application["Theme"] = sLocation;
+            return HttpContext.Application["Theme"] as string;
         }
 
         private List<Album> GetTopSellingAlbums(int count)
