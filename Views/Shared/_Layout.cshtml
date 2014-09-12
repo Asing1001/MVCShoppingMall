@@ -6,8 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")*@
     <link href=@Convert.ToString( HttpContext.Current.Application["Theme"]) rel="stylesheet" type="text/css" />
-    @Scripts.Render("~/bundles/modernizr")
     
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-fixed-top navbar navbar-default">
@@ -32,7 +33,7 @@
                         <li>@Html.ActionLink("商品管理", "Index", "StoreManager")</li>
                     }
                 </ul>
-                <ul class="nav navbar-nav navbar-right">                    
+                <ul class="nav navbar-nav navbar-right">
                     @Html.Partial("_LoginPartial")  @*放login  logout 的partial view*@
                     @{Html.RenderAction("CartSummary", "ShoppingCart");}   @*放購物車(數量)*@
                     @Html.Partial("_ChangeTheme")
@@ -42,11 +43,11 @@
     </div>
 
     <div class="container" style="margin-top:70px; ">
-        
+
         <div class="row">
 
             <nav class="col-xs-12 col-sm-3">
-                <header class="lead"><h3>商品分類</h3></header>    @*區段標題header*@
+                <header class="lead text-center tex"><h3>商品分類</h3></header>    @*區段標題header*@
                 @{Html.RenderAction("GenreMenu", "Store");}
             </nav>
 
@@ -81,7 +82,7 @@
         });
 
         $('.carousel').carousel({
-            interval: 1500
+            interval: 2000
         })
     </script>
 </body>

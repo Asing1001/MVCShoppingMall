@@ -1,0 +1,27 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "刪除權限";
+}
+
+<h2>刪除權限</h2>
+
+<h3>確定刪除? </h3>
+<p><em>這個動作將刪除所有此權限，但不會刪除使用者</em></p>
+<div>
+    <h4>權限</h4>
+    <hr />
+    <dl class="dl-horizontal text-left"> 
+            名稱：    
+            @Html.DisplayFor(model => model.Name) 
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="刪除" class="btn btn-default" /> |
+            @Html.ActionLink("回到權限管理", "Index")
+        </div>
+    }
+</div>

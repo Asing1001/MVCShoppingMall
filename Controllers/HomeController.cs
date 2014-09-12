@@ -24,15 +24,15 @@ namespace IdentitySample.Controllers
 
         public string LoadTheme(string Theme = null)
         {
-            string sLocation = "/Content/";
+            string sLocation = "/Content/bootstrap_";
          
             if (Theme == null || Theme=="Default")
             {
-                sLocation += "bootstrap.css";
+                sLocation += "Default.css";
             }
             else 
             {
-                sLocation += "theme/" +Theme+".css";
+                sLocation +=  Theme+".css";
             }   
 
 

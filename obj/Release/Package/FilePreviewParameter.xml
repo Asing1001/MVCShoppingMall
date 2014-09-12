@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="WebMVC" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\III\\Desktop\\WecareMVC\\MVCShoppingCart\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\III\\Desktop\\WecareMVC\\MVCShoppingCart\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="MusicStoreEntities1-Web.config Connection String" description="" value="Data Source=.;Initial Catalog=MVCTest;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\III\\Desktop\\WecareMVC\\MVCShoppingCart\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MusicStoreEntities1']/@connectionString" />
+  </parameter>
+</parameters>
