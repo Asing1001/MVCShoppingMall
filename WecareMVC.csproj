@@ -217,6 +217,7 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\images\Product\sp1.jpg" />
     <Content Include="Content\images\Product\sp2.jpg" />
@@ -224,21 +225,23 @@
     <Content Include="Content\images\Product\sp4.jpg" />
     <Content Include="Content\images\Product\sp5.jpg" />
     <Content Include="Content\images\Product\sp6.jpg" />
-    <Content Include="Content\theme\Black.css" />
-    <Content Include="Content\theme\White.css" />
+    <Content Include="Content\images\Product\sp7.jpg" />
+    <Content Include="Content\images\Slider\advertising.jpg" />
+    <Content Include="Content\images\Slider\coupon.jpg" />
+    <Content Include="Content\images\Slider\Travel.jpg" />
+    <Content Include="Content\bootstrap_Black.css" />
+    <Content Include="Content\bootstrap_White.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\theme\United.css" />
+    <Content Include="Content\bootstrap_BlueGreen.css" />
+    <Content Include="Content\bootstrap_Default.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapbackup.css" />
-    <Content Include="Content\images\care.jpg" />
+    <Content Include="Content\images\Slider\care.jpg" />
     <Content Include="Content\images\placeholder.gif" />
-    <Content Include="Content\images\mother.jpg" />
-    <Content Include="Content\images\trend.png" />
+    <Content Include="Content\images\Slider\mother.jpg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\theme\Space.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="Content\bootstrap_Space.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -247,6 +250,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\wecarewebvm %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wecarewebvm %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wecarewebvm.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -334,6 +340,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

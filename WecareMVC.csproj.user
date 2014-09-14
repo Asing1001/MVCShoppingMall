@@ -10,6 +10,7 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <ProjectView>ProjectFiles</ProjectView>
     <WebStackScaffolding_DbContextTypeFullName>WecareMVC.Models.MusicStoreEntities</WebStackScaffolding_DbContextTypeFullName>
+    <NameOfLastUsedPublishProfile>wecarewebvm %283%29</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
