@@ -39,7 +39,7 @@ namespace WecareMVC.Controllers
                 {
                     order.Username = User.Identity.Name;
                     order.OrderDate = DateTime.Now;
-                    order.Total = order.Total/2;
+                    order.Total = order.Total / 2;
 
                     //Save Order
                     storeDB.Orders.Add(order);
@@ -51,6 +51,7 @@ namespace WecareMVC.Controllers
                     return RedirectToAction("Complete",
                         new { id = order.OrderId });
 
+                    //return RedirectToAction("OrderDetail", order);
 
                     //return View(order);
                 }
@@ -66,8 +67,10 @@ namespace WecareMVC.Controllers
                     var cart = ShoppingCart.GetCart(this.HttpContext);
                     cart.CreateOrder(order);
 
-                    return RedirectToAction("Complete",
-                        new { id = order.OrderId });
+                   
+                    //    return RedirectToAction("Complete",
+                    //        new { id = order.OrderId });                   
+                    return RedirectToAction("OrderDetails", new { id = order.OrderId });
                 }
             }
             catch
@@ -94,6 +97,12 @@ namespace WecareMVC.Controllers
             {
                 return View("Error");
             }
+        }
+
+        public ActionResult OrderDetails(int id)
+        {
+            var oderWithDetails = storeDB.Orders.Include("OrderDetails").Single(o => o.OrderId ==id).OrderDetails.ToList();
+            return View(oderWithDetails);
         }
     }
 }

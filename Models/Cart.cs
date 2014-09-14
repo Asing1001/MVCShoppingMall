@@ -45,7 +45,9 @@ namespace WecareMVC.Models
         public int OrderDetailId { get; set; }
         public int OrderId { get; set; }
         public int AlbumId { get; set; }
+        [DisplayName("數量")]
         public int Quantity { get; set; }
+        [DisplayName("單價")]
         public decimal UnitPrice { get; set; }
         public virtual Album Album { get; set; }
         public virtual Order Order { get; set; }

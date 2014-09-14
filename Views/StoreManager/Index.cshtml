@@ -20,7 +20,7 @@
 <h2>商品管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("商品上架", "Create")
 </p>
 <table class="table">
     <tr>
@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.AlbumArtUrl)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
+            @Html.ActionLink("編輯", "Edit", new { id=item.AlbumId }) |
+            @Html.ActionLink("查看", "Details", new { id=item.AlbumId }) |
+            @Html.ActionLink("刪除", "Delete", new { id=item.AlbumId })
         </td>
     </tr>
 }

@@ -11,14 +11,15 @@ namespace WecareMVC.Models
     [Bind(Exclude = "AlbumId")]
     public class Album
     {
-        [ScaffoldColumn(false)]
+        //[ScaffoldColumn(false)]
         public int AlbumId { get; set; }
-        [DisplayName("Genre")]
+        [DisplayName("商品分類ID")]
         public int GenreId { get; set; }
-        [DisplayName("Artist")]
+        [DisplayName("製造商ID")]
         public int ArtistId { get; set; }
         [Required(ErrorMessage = "An Album Title is required")]
         [StringLength(160)]
+        [DisplayName("商品名稱")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Price is required")]
         [Range(0.01, 100.00,

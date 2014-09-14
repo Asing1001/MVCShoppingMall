@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -10,9 +11,13 @@ namespace WecareMVC.Models
     public class Genre
     {
         [Key]
+        [DisplayName("分類ID")]
         public int GenreId { get; set; }
+        [DisplayName("分類名稱")]
         public string Name { get; set; }
-        public string Description { get; set; }        
+        [DisplayName("分類描述")]
+        public string Description { get; set; }
+        [DisplayName("分類商品")]
         public List<Album> Albums { get; set; }
         //public virtual List<Album> Albums { get; set; }
     

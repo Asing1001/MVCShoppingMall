@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Album.cs" />
@@ -330,6 +331,8 @@
     <Content Include="Views\ShoppingCart\_CartSummary.cshtml" />
     <Content Include="Views\Store\_GenreMenu.cshtml" />
     <Content Include="Views\Shared\_ChangeTheme.cshtml" />
+    <Content Include="Views\Checkout\View.cshtml" />
+    <Content Include="Views\Checkout\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
