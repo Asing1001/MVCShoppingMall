@@ -87,10 +87,11 @@ namespace WecareMVC.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public async Task<ActionResult> Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, int id)
         {
             if (ModelState.IsValid)
             {
+                album.AlbumId = id;
                 db.Entry(album).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
