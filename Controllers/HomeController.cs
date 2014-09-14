@@ -45,7 +45,7 @@ namespace IdentitySample.Controllers
             // Group the order details by album and return
             // the albums with the highest count
             return storeDB.Albums
-                .OrderByDescending(a => a.OrderDetails.Count())
+                .OrderByDescending(a => a.OrderDetails.Sum(o => o.Quantity))
                 .Take(count)
                 .ToList();
         }

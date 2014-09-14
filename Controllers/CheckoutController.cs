@@ -11,7 +11,7 @@ namespace WecareMVC.Controllers
     public class CheckoutController : Controller
     {
         MusicStoreEntities storeDB = new MusicStoreEntities();
-        const string PromoCode = "FREE";   //讓user可以使用序號達到免費、打折等等
+        const string PromoCode = "FD1FBN2FMNJT";   //讓user可以使用序號達到免費、打折等等
 
         // GET: Checkout
         public ActionResult Index()
@@ -37,7 +37,22 @@ namespace WecareMVC.Controllers
             {
                 if (string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase) == true)
                 {
-                    return View(order);
+                    order.Username = User.Identity.Name;
+                    order.OrderDate = DateTime.Now;
+                    order.Total = order.Total/2;
+
+                    //Save Order
+                    storeDB.Orders.Add(order);
+                    storeDB.SaveChanges();
+                    //Process the order
+                    var cart = ShoppingCart.GetCart(this.HttpContext);
+                    cart.CreateOrder(order);
+
+                    return RedirectToAction("Complete",
+                        new { id = order.OrderId });
+
+
+                    //return View(order);
                 }
                 else
                 {

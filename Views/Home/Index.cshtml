@@ -75,7 +75,7 @@
                     <h3 class="text-danger">優惠價：$ @(album.Price)</h3>
                 </div>
                 <div class="ratings">
-                    <p class="pull-right">已賣出：@album.OrderDetails.Count() 件</p>
+                    <p class="pull-right">已賣出：@album.OrderDetails.Sum(o=>o.Quantity) 件</p>
                     <p>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
