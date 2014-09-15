@@ -1,7 +1,11 @@
-MVCShoppingCart
+MVC_ShoppingMall
 ===============
 
 ASP.NET MVC 購物商城
+
+成品參考：(管理者帳號：admin@admin.com 密碼：P@ssw0rd)
+
+http://wecarestore.azurewebsites.net/
 
 主要功能：
 
