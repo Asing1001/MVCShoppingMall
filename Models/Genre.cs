@@ -28,20 +28,21 @@ namespace WecareMVC.Models
         {
             MusicStoreEntities db = new MusicStoreEntities();
             var Albums = db.Albums.Where(a => a.GenreId == GenreId).
-                OrderByDescending(a => a.OrderDetails.Count())
+                OrderByDescending(a => a.OrderDetails.Sum(o=>o.Quantity))
                 .Take(count)
                 .ToList();
             return Albums;
         }
     }
 
+    //should add using WecareMVC.Models in Razor view
     public static class GenreExtension
     {
         public static IEnumerable<Album> GetTopAlbum(this  WecareMVC.Models.Genre genre, int count)
         {
             MusicStoreEntities db = new MusicStoreEntities();
             var Albums = db.Albums.Where(a=>a.GenreId==genre.GenreId).
-                OrderByDescending(a=>a.OrderDetails.Count())
+                OrderByDescending(a => a.OrderDetails.Sum(o => o.Quantity))
                 .Take(count)
                 .ToList();
             return Albums;

@@ -281,9 +281,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\WecareStore - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WecareStore - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\wecarewebvm %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\wecarewebvm %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\wecarewebvm.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -367,8 +364,6 @@
     <Content Include="Views\Shared\_ChangeTheme.cshtml" />
     <Content Include="Views\Checkout\View.cshtml" />
     <Content Include="Views\Checkout\OrderDetails.cshtml" />
-    <Content Include="Views\StoreManager\Upload.cshtml" />
-    <Content Include="Views\Store\Details2.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
