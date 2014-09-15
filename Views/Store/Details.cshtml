@@ -1,29 +1,26 @@
 ﻿@model WecareMVC.Models.Album
 @{
-    ViewBag.Title = "Album - " + Model.Title;
+    ViewBag.Title = "商品 - " + Model.Title;
 }
-<h2>@Model.Title</h2>
+<div class="col-md-offset-1">
+<h2 class="text-danger">@Model.Title</h2>
 <p>
     <img alt="@Model.Title"
-         src="@Model.AlbumArtUrl" />
+         src="@Model.AlbumArtUrl" class="img-responsive" />
 </p>
-<div id="album-details">
-    <p>
-        <em>Genre:</em>
-        @Model.Genre.Name
-    </p>
-    <p>
-        <em>Artist:</em>
-        @Model.Artist.Name
-    </p>
-    <p>
-        <em>Price:</em>
-        @String.Format("{0:F}",
-Model.Price)
-    </p>
-    <p class="button">
-        @Html.ActionLink("加入購物車", "AddToCart",
-        "ShoppingCart", new { id = Model.AlbumId }, "")
-    </p>
-</div>
 
+@*<dl class="dl--horizontal">*@
+   
+    <h4 class="text-primary">商品分類：@Model.Genre.Name</h4>
+    
+    <h4 class="text-justify">製造商：@Model.Artist.Name</h4>
+   
+    <h4 class="text-success">單價：@Model.Price.ToString("c2")</h4>
+   
+    <span class="col-md-offset-4">
+        @Html.ActionLink("加入購物車", "AddToCart",
+        "ShoppingCart", new { id = Model.AlbumId }, new { @class="h3 text-danger" })
+</span>
+@*</dl>*@
+
+</div>

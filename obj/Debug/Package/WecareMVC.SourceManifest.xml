@@ -3,4 +3,5 @@
   <IisApp path="C:\Users\Andy\Desktop\WecareStore\MVCShoppingCart\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
   <setAcl path="C:\Users\Andy\Desktop\WecareStore\MVCShoppingCart\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
   <setAcl path="C:\Users\Andy\Desktop\WecareStore\MVCShoppingCart\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Andy\Desktop\WecareStore\MVCShoppingCart\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
 </sitemanifest>

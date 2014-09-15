@@ -69,6 +69,20 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $('#FileUpload1').change(function readURL() {
+                $('#pUrl').text('預估url為:https://wecaremvc.blob.core.windows.net/photos/' + this.files[0].name);
+
+                var reader = new FileReader();
+                
+                reader.readAsDataURL(this.files[0]);
+                reader.onload = function (e) {
+                  $('#img1').attr('src', e.target.result);
+                    
+                }
+            })
+
+
+
             $('#myTheme>li>a').click(function () {
                 $.ajax({
                     url: "/Home/LoadTheme/?Theme=" + $(this).text(),

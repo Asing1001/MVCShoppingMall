@@ -8,6 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WecareMVC.Models;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage;
+using System.IO;
+using System.Collections.Specialized;
+using System.Configuration;
 
 namespace WecareMVC.Controllers
 {
@@ -16,14 +21,115 @@ namespace WecareMVC.Controllers
     {
         private MusicStoreEntities db = new MusicStoreEntities();
 
+        // GET: StoreManager/Upload/5
+        public async Task<ActionResult> Upload(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Album album = await db.Albums.FindAsync(id);
+            if (album == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+            return View(album);
+        }
+
+        // POST: StoreManager/Upload/5
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Upload([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, int id, HttpPostedFileBase file)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    album.AlbumId = id;
+                   
+                    if (file.ContentLength > 0)
+                    {
+                        //存資料夾
+                        //var fileName = Path.GetFileName(file.FileName);
+                        //var path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
+                        //file.SaveAs(path);
+
+                        //建立容器
+                        this.CreateContainerExists();
+
+                        //HttpPostedFileBase轉成byte
+                        //MemoryStream target = new MemoryStream();
+                        //file.InputStream.CopyTo(target);
+                        //byte[] data = target.ToArray();
+                        //SaveImage(Guid.NewGuid().ToString(), file.FileName, file.ContentType, data);
+                        SaveImage(file);
+
+                        album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+
+                        db.Entry(album).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                    }
+                }
+                //ViewBag.Message = "Upload successful";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ViewBag.Message = "Upload failed";
+                //return RedirectToAction("Uploads");
+                ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                return View(album);
+            }
+        }
+
+        private void SaveImage(HttpPostedFileBase data)
+        {
+            CloudBlockBlob blob = this.GetContainer().GetBlockBlobReference(data.FileName);
+            blob.Properties.ContentType = data.ContentType;
+            using (var fileStream = data.InputStream)
+            {
+                blob.UploadFromStream(fileStream);
+            } 
+        }
+
+        //存取Image
+        private void SaveImage(string id, string fileName, string contentType, byte[] data)
+        {
+            //利用GetBlobReference來取得Blob，第一個參數會帶進檔案名稱，
+            //而此檔案名稱會化成Uri的一部分。https://wecaremvc.blob.core.windows.net/photos/fileName
+            CloudBlockBlob blob = this.GetContainer().GetBlockBlobReference(fileName);            
+            //檔案型態
+            blob.Properties.ContentType = contentType;
+            blob.UploadFromByteArray(data,0,data.Length);  
+        }
+
         private CloudBlobContainer GetContainer()
         {
-            //取得Developer用的Storage Account。
-            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            //取得Storage Account。
+            CloudStorageAccount account = CloudStorageAccount.Parse( 
+                                 ConfigurationManager.ConnectionStrings["StorageConnectionString"].ConnectionString);
             //取得Storage的Client
             CloudBlobClient client = account.CreateCloudBlobClient();
             //取得Container關聯。
-            return client.GetContainerReference("mycontainer");
+            return client.GetContainerReference("photos");
+        }
+
+        private void CreateContainerExists()
+        {
+            CloudBlobContainer container = this.GetContainer();
+            //假如沒有這個Container，就建立一個。
+            container.CreateIfNotExists();
+
+            container.SetPermissions(
+             new BlobContainerPermissions
+             {
+                    PublicAccess = BlobContainerPublicAccessType.Blob
+            });
         }
 
 
@@ -98,11 +204,17 @@ namespace WecareMVC.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, int id)
+        public async Task<ActionResult> Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, int id, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
                 album.AlbumId = id;
+
+                if (file.ContentLength!=0 && file!= null)
+                {
+                    SaveImage(file);
+                    album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+                }
                 db.Entry(album).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -3,7 +3,7 @@
     ViewBag.Title = "帳號管理";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
     <div class="col-md-8">
@@ -18,7 +18,7 @@
             }
         </p>
         <p>
-            Phone Number: @(Model.PhoneNumber ?? "None") [
+            連絡電話: @(Model.PhoneNumber ?? "無") [
             @if (Model.PhoneNumber != null)
             {
                 @Html.ActionLink("更改連絡電話", "AddPhoneNumber")

@@ -33,7 +33,7 @@
                                 $('#row-' + data. DeleteId).fadeOut('slow');
                             }
                             $('#update-message').text(htmlDecode(data.Message));
-                            $('#cart-total').text(data.CartTotal);
+                            $('#cart-total').text('$ '+data.CartTotal);
                             $('#cart-status').text('Cart (' + data.CartCount + ')');
                         });
                 }
@@ -59,7 +59,7 @@
                                 $('#update-message').text(data.Message);   //從shoppingcartcontroller回傳錯誤或成功訊息                            
                                 //Only process the callback data when no server error occurs
                                 if (data.ItemCount != -1) {
-                                    $('#cart-total').text(data.CartTotal);
+                                    $('#cart-total').text('$ ' + data.CartTotal);
                                     $('#cart-status').text('Cart (' + data.CartCount + ')');
                                 }
                             });

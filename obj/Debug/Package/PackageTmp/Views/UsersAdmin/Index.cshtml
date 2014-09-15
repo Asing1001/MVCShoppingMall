@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "帳務管理";
 }
 
-<h2>Index</h2>
+<h2>帳務管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增使用者", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+           使用者名稱
         </th>
         <th>
 
@@ -26,9 +26,9 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("編輯", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("查看", "Details", new { id = item.Id }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
