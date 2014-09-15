@@ -197,7 +197,7 @@ namespace IdentitySample.Controllers
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "確認帳號", "點擊後回到WecareStore <a href=\"" + callbackUrl + "\">link</a>");
+                    await UserManager.SendEmailAsync(user.Id, "確認帳號", "感謝您註冊成為WecareStore會員，點擊後回到WecareStore完成帳號認證 <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;   
                     //////註冊後將user寫入shoppingcart
                     MigrateShoppingCart(model.Email);

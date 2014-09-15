@@ -11,7 +11,7 @@ namespace WecareMVC.Models
     [Bind(Exclude = "AlbumId")]
     public class Album
     {
-        //[ScaffoldColumn(false)]
+        [ScaffoldColumn(false)]
         public int AlbumId { get; set; }
         [DisplayName("商品分類ID")]
         public int GenreId { get; set; }
@@ -22,10 +22,11 @@ namespace WecareMVC.Models
         [DisplayName("商品名稱")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Price is required")]
-        [Range(0.01, 100.00,
-            ErrorMessage = "Price must be between 0.01 and 100.00")]
+        [Range(0.01, 1000.00,
+            ErrorMessage = "價格必須在 0.01 到 1000.00 之間")]
+        [DisplayName("單價")]
         public decimal Price { get; set; }
-        [DisplayName("Album Art URL")]
+        [DisplayName("圖片")]
         [StringLength(1024)]
         public string AlbumArtUrl { get; set; }
         public virtual Genre Genre { get; set; }

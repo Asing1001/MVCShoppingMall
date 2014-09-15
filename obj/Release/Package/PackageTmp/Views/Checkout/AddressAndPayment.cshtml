@@ -62,13 +62,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -121,11 +121,10 @@
         <fieldset>
             <legend>Payment</legend>
             <p>
-                We're running a promotion: all music is free
-                with the promo code: "FREE"
+               輸入Wecare購物券序號，購物商品全面五折優惠！
             </p>
             <div class="form-group">
-                @Html.Label("Promo Code", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("序號：", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextBox("Promo Code","", new { htmlAttributes = new { @class = "form-control" } })
                     @*@Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })*@

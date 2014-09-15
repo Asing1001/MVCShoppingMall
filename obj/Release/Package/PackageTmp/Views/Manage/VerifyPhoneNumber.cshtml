@@ -1,6 +1,6 @@
 ﻿@model IdentitySample.Models.VerifyPhoneNumberViewModel
 @{
-    ViewBag.Title = "Verify Phone Number";
+    ViewBag.Title = "驗證電話號碼";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -9,7 +9,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("phoneNumber", @Model.PhoneNumber)
-    <h4>Add a phone number.</h4>
+    <h4>新增您的電話</h4>
     <h5>@ViewBag.Status</h5>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })

@@ -5,6 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using IdentitySample.Models;
 using Owin;
 using System;
+using Microsoft.Owin.Security.Google;
 
 namespace IdentitySample
 {
@@ -58,9 +59,13 @@ namespace IdentitySample
             appId: "351051355069147",
             appSecret: "9def0cceec52a42a4c5f241b9be6b55e");
 
-           app.UseGoogleAuthentication(
-                clientId: "183168110639-fk7jh3ra2hm2sivjkafavn7t96iudlla.apps.googleusercontent.com",
-                clientSecret: "u_t8ctNMuctbCn4_3rAGD8aD");
+            app.UseGoogleAuthentication();
+                // clientId: "317064614928 - vodufmsrehg38bdp36e9h9msclsaqvui.apps.googleusercontent.com",
+                ////"183168110639-fk7jh3ra2hm2sivjkafavn7t96iudlla.apps.googleusercontent.com",
+                // clientSecret: "rPnoizTM7Gdqu2h56TdRB_xV");
+            //"u_t8ctNMuctbCn4_3rAGD8aD");
+
+        
         }
     }
 }

@@ -16,6 +16,17 @@ namespace WecareMVC.Controllers
     {
         private MusicStoreEntities db = new MusicStoreEntities();
 
+        private CloudBlobContainer GetContainer()
+        {
+            //取得Developer用的Storage Account。
+            CloudStorageAccount account = CloudStorageAccount.DevelopmentStorageAccount;
+            //取得Storage的Client
+            CloudBlobClient client = account.CreateCloudBlobClient();
+            //取得Container關聯。
+            return client.GetContainerReference("mycontainer");
+        }
+
+
         // GET: StoreManager
         public async Task<ActionResult> Index()
         {

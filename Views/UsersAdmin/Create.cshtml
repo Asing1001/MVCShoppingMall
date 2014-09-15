@@ -1,14 +1,14 @@
 ﻿@model IdentitySample.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "新增使用者";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    
     <hr />
     @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
         <label class="col-md-2 control-label">
-            Select User Role
+            選擇權限
         </label>
         <div class="col-md-10">
             @foreach (var item in (SelectList)ViewBag.RoleId)
@@ -43,7 +43,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Create" />
+            <input type="submit" class="btn btn-default" value="確定新增" />
         </div>
     </div>
 }

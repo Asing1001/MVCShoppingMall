@@ -1,16 +1,16 @@
 ﻿@model IdentitySample.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "刪除";
 }
 
-<h2>Delete.</h2>
+<h2>刪除使用者</h2>
 
-<h3>Are you sure you want to delete this User?</h3>
+<h3>確定刪除使用者?</h3>
 <div>
-    <h4>User.</h4>
+    <h4>使用者</h4>
     <hr />
-    <dl class="dl-horizontal">
+    @*<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
@@ -18,14 +18,16 @@
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
-    </dl>
+    </dl>*@
+    <p>@Html.DisplayFor(model => model.UserName)</p>
+    <br />
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="刪除" class="btn btn-default" /> |
+            @Html.ActionLink("回帳務管理", "Index")
         </div>
     }
 </div>

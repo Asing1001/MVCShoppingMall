@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WecareMVC.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "訂單確認完畢!";
+}
+
+<h2>訂單詳細資訊</h2>
+<p>謝謝您的支持，歡迎再度光臨，您的訂單序號為: @Model.FirstOrDefault().OrderId</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Album.Title)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Order.Username)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.UnitPrice)*@
+            小計
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.Title)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Order.Username)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+           $ @item.UnitPrice
+        </td>  
+        <td>
+            @((item.UnitPrice*item.Quantity).ToString("c2"))
+        </td> 
+              
+    </tr>
+}
+    <tr>
+        <td>總計</td>
+        <td></td>
+        <td></td>
+        <td>@Model.Sum(o=>o.UnitPrice*o.Quantity).ToString("c2")</td>
+    </tr>
+
+</table>
+
+<p>
+    瀏覽更多商品：
+    @Html.ActionLink("WecareStore", "Index", "Home")
+</p>

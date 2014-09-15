@@ -1,0 +1,17 @@
+﻿@model WecareMVC.Models.Album
+@{
+    ViewBag.Title = "商品刪除";
+}
+<h2>商品刪除確認</h2>
+<p>
+   確定刪除這項商品嗎？
+    <strong>@Model.Title</strong>?
+</p>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="刪除" />
+    </p>
+    <p>
+        @Html.ActionLink("回商品管理", "Index")
+    </p>
+}
