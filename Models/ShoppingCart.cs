@@ -125,7 +125,7 @@ namespace WecareMVC.Models
             return total ?? decimal.Zero;  //若total是空值，則回傳0.00
         }
 
-        public int CreateOrder(Order order)   //把每一筆購買商品記錄到order中
+        public int CreateOrder(Order order, decimal disCount)   //把每一筆購買商品記錄到order中
         {
             decimal orderTotal = 0;
 
@@ -143,13 +143,14 @@ namespace WecareMVC.Models
                 };
 
                 // Set the order total of the shopping cart
-                orderTotal += (item.Count * item.Album.Price);  //累計取得訂單總價
+                orderTotal += (item.Count * item.Album.Price)*disCount;  //累計取得訂單總價
 
                 storeDB.OrderDetails.Add(orderDetail);
 
             }
             // Set the order's total to the orderTotal count
-            order.Total = orderTotal;
+            storeDB.Orders.Single(o => o.OrderId == order.OrderId).Total = orderTotal;
+            
 
             // Save the order
             storeDB.SaveChanges();

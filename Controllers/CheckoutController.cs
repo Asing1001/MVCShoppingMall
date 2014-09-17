@@ -38,18 +38,17 @@ namespace WecareMVC.Controllers
                 if (string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase) == true)
                 {
                     order.Username = User.Identity.Name;
-                    order.OrderDate = DateTime.Now;
-                    order.Total = order.Total / 2;
+                    order.OrderDate = DateTime.Now;                    
 
                     //Save Order
                     storeDB.Orders.Add(order);
                     storeDB.SaveChanges();
                     //Process the order
                     var cart = ShoppingCart.GetCart(this.HttpContext);
-                    cart.CreateOrder(order);
+                    cart.CreateOrder(order, 0.8m);
 
-                    return RedirectToAction("Complete",
-                        new { id = order.OrderId });
+                    return RedirectToAction("OrderDetails",
+                        new { id = order.OrderId});
 
                     //return RedirectToAction("OrderDetail", order);
 
@@ -65,12 +64,9 @@ namespace WecareMVC.Controllers
                     storeDB.SaveChanges();
                     //Process the order
                     var cart = ShoppingCart.GetCart(this.HttpContext);
-                    cart.CreateOrder(order);
+                    cart.CreateOrder(order,1);
 
-                   
-                    //    return RedirectToAction("Complete",
-                    //        new { id = order.OrderId });                   
-                    return RedirectToAction("OrderDetails", new { id = order.OrderId });
+                    return RedirectToAction("OrderDetails", new { id = order.OrderId});
                 }
             }
             catch
@@ -99,10 +95,26 @@ namespace WecareMVC.Controllers
             }
         }
 
+        // GET: /Checkout/OrderDetails
         public ActionResult OrderDetails(int id)
         {
-            var oderWithDetails = storeDB.Orders.Include("OrderDetails").Single(o => o.OrderId ==id).OrderDetails.ToList();
-            return View(oderWithDetails);
+            ViewBag.total = storeDB.Orders.Single(o=>o.OrderId==id).Total;
+
+            bool isValid = storeDB.Orders.Any(
+                o => o.OrderId == id &&
+                o.Username == User.Identity.Name);
+
+            if (isValid)
+            {
+                var oderWithDetails = storeDB.Orders.Include("OrderDetails").Single(o => o.OrderId == id).OrderDetails.ToList();
+
+                return View(oderWithDetails);
+            }
+            else
+            {
+                return View("Error");
+            }
+           
         }
     }
 }

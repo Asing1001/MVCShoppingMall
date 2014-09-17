@@ -53,7 +53,7 @@ namespace WecareMVC.Controllers
                    
                     if (file.ContentLength > 0)
                     {
-                        //存資料夾
+                        //只是存資料夾
                         //var fileName = Path.GetFileName(file.FileName);
                         //var path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
                         //file.SaveAs(path);

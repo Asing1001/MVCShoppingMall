@@ -1,13 +1,13 @@
 ﻿@model WecareMVC.Models.Order
 
 @{
-    ViewBag.Title = "AddressAndPayment";
+    ViewBag.Title = "收件人資訊";
 }
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-<h2>AddressAndPayment</h2>
+<h2>收件人資訊</h2>
 
 
 @using (Html.BeginForm())
@@ -119,14 +119,14 @@
         </div>*@
 
         <fieldset>
-            <legend>Payment</legend>
+            <legend class="text-danger">優惠活動</legend>
             <p>
                輸入Wecare購物券序號，購物商品全面五折優惠！
             </p>
             <div class="form-group">
                 @Html.Label("序號：", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBox("Promo Code","", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBox("PromoCode","", new { htmlAttributes = new { @class = "form-control" } })
                     @*@Html.ValidationMessageFor(model => model.OrderDate, "", new { @class = "text-danger" })*@
                 </div>
             </div>

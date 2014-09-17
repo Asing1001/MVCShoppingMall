@@ -74,7 +74,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AlbumArtUrl, "原圖片URL", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <span id="pUrl">@Model.AlbumArtUrl</span>
+                <span id="pUrl" class="text-success h4">@Model.AlbumArtUrl</span>
                 <span class="btn btn-default btn-file tex">
                     瀏覽...
                     @Html.TextBox("file", "", new { type = "file", id = "FileUpload1" })
