@@ -3,12 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
+
+   
     @*@Styles.Render("~/Content/css")*@
     <link href=@Convert.ToString( HttpContext.Current.Application["Theme"]) rel="stylesheet" type="text/css" />
     
     @Scripts.Render("~/bundles/modernizr")
-
+    <style type=text/css>
+        body {
+            font-family: 'Microsoft JhengHei' !important;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-fixed-top navbar navbar-default">
@@ -47,7 +53,7 @@
         <div class="row">
 
             <nav class="col-xs-12 col-sm-3">
-                <header class="lead text-center tex"><h3>商品分類</h3></header>    @*區段標題header*@
+                <header class="lead text-center tex"><h3 class="text-danger">商品分類</h3></header>    @*區段標題header*@
                 @{Html.RenderAction("GenreMenu", "Store");}
             </nav>
 
@@ -57,7 +63,7 @@
 
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - WecareStore</p>
+            <p>&copy; WecareStore.Co - @DateTime.Now.Year </p>
         </footer>
     </div>
 

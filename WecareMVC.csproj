@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\Product\sp8.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Custom.css" />
     <Content Include="Content\images\Product\sp1.jpg" />
@@ -280,7 +281,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\WecareStore - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WecareStore - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\WecareStore.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

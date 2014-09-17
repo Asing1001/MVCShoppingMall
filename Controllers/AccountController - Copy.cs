@@ -14,11 +14,9 @@ using System.Web.Security;
 
 namespace IdentitySample.Controllers
 {
-     [Authorize]
+    [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
@@ -29,6 +27,7 @@ namespace IdentitySample.Controllers
             SignInManager = signInManager;
         }
 
+        private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {
             get
@@ -43,7 +42,6 @@ namespace IdentitySample.Controllers
 
        
 
-        //
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -65,6 +63,7 @@ namespace IdentitySample.Controllers
         }
 
 
+
         //按下確認訂單按鈕後
         private void MigrateShoppingCart(string UserEmail)
         {
@@ -75,7 +74,6 @@ namespace IdentitySample.Controllers
             Session[ShoppingCart.CartSessionKey] = UserEmail;
         }
         //
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -85,24 +83,51 @@ namespace IdentitySample.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
+            }             
+            
+            //if (Membership.ValidateUser(model.Email, model.Password))
+            //{
+            //    MigrateShoppingCart(model.Email);//讓cartID成為使用者
 
-            // 這不會計算為帳戶鎖定的登入失敗
-            // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
+            //    FormsAuthentication.SetAuthCookie(model.Email,
+            //        model.RememberMe);
+            //    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1
+            //        && returnUrl.StartsWith("/")
+            //        && !returnUrl.StartsWith("//") &&
+            //        !returnUrl.StartsWith("/\\"))
+            //    {
+            //        return Redirect(returnUrl);
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", "帳號或密碼不正確");
+            //}
+            
+            // This doen't count login failures towards lockout only two factor authentication
+            // To enable password failures to trigger lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    MigrateShoppingCart(model.Email);//若登入成功讓cartID成為使用者
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "登入嘗試失試。");
+                    ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+
+
         }
 
         //
@@ -264,7 +289,7 @@ namespace IdentitySample.Controllers
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
-                // 不顯示使用者不存在
+                // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
@@ -291,7 +316,7 @@ namespace IdentitySample.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
-            // 要求重新導向至外部登入提供者
+            // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
@@ -310,7 +335,6 @@ namespace IdentitySample.Controllers
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl });
         }
 
-        //
         //
         // POST: /Account/SendCode
         [HttpPost]
@@ -342,7 +366,7 @@ namespace IdentitySample.Controllers
                 return RedirectToAction("Login");
             }
 
-            // 若使用者已經有登入資料，請使用此外部登入提供者登入使用者
+            // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
@@ -351,10 +375,10 @@ namespace IdentitySample.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                 default:
-                    // 若使用者沒有帳戶，請提示使用者建立帳戶
+                    // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -375,7 +399,7 @@ namespace IdentitySample.Controllers
 
             if (ModelState.IsValid)
             {
-                // 從外部登入提供者處取得使用者資訊
+                // Get the information about the user from the external login provider
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
@@ -417,8 +441,8 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-        #region Helper
-        // 新增外部登入時用來當做 XSRF 保護
+        #region Helpers
+        // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
