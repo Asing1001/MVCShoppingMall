@@ -54,21 +54,22 @@ namespace WecareMVC.Controllers
                     if (file.ContentLength > 0)
                     {
                         //只是存資料夾
-                        //var fileName = Path.GetFileName(file.FileName);
-                        //var path = Path.Combine(Server.MapPath("~/App_Data/Images"), fileName);
-                        //file.SaveAs(path);
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/App_Data/Images"),   fileName);
+                        file.SaveAs(path);
 
                         //建立容器
-                        this.CreateContainerExists();
+                        //this.CreateContainerExists();
 
                         //HttpPostedFileBase轉成byte
                         //MemoryStream target = new MemoryStream();
                         //file.InputStream.CopyTo(target);
                         //byte[] data = target.ToArray();
                         //SaveImage(Guid.NewGuid().ToString(), file.FileName, file.ContentType, data);
-                        SaveImage(file);
+                        //SaveImage(file);
 
-                        album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+                        //album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+                        album.AlbumArtUrl = path;
 
                         db.Entry(album).State = EntityState.Modified;
                         await db.SaveChangesAsync();
@@ -168,17 +169,29 @@ namespace WecareMVC.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public async Task<ActionResult> Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid&& file!=null)
             {
-                db.Albums.Add(album);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                //圖片存資料夾
+                
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/Upload"), fileName);
+                    file.SaveAs(path);
+                    album.AlbumArtUrl = "/Content/Images/Upload/" + fileName;
+
+
+                    db.Albums.Add(album);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Details", new { id = album.AlbumId });   
             }
+
+            
+
 
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+            ViewBag.uploadInfo = "請選擇圖片！";
             return View(album);
         }
 
@@ -210,14 +223,21 @@ namespace WecareMVC.Controllers
             {
                 album.AlbumId = id;
 
-                if (file.ContentLength!=0 && file!= null)
+                //if (file.ContentLength!=0 && file!= null)
+                //{
+                //    SaveImage(file);
+                //    album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+                //}
+                if (file != null)
                 {
-                    SaveImage(file);
-                    album.AlbumArtUrl = "https://wecaremvc.blob.core.windows.net/photos/" + file.FileName;
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/Upload"), fileName);
+                    file.SaveAs(path);
+                    album.AlbumArtUrl = "/Content/Images/Upload/" + fileName;
                 }
                 db.Entry(album).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new {id = album.AlbumId });
             }
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
