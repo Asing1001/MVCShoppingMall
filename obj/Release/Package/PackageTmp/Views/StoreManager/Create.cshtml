@@ -3,10 +3,32 @@
 @{
     ViewBag.Title = "商品上架";
 }
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
 
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+</style>
 <h2>商品上架</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm("Create", "StoreManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -46,11 +68,29 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.AlbumArtUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AlbumArtUrl, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AlbumArtUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlbumArtUrl, "圖片URL", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<span id="pUrl" class="text-success h4">@Model.AlbumArtUrl</span>*@
+                <span class="btn btn-default btn-file tex">
+                    瀏覽...
+                    @Html.TextBox("file", "", new { type = "file", id = "FileUpload1" })
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <img id="img1" src="" class="img-responsive" alt="">
+                <h4 class="text-danger">@ViewBag.uploadInfo</h4>
             </div>
         </div>
 

@@ -36,7 +36,7 @@ namespace WecareMVC.Controllers
                 .ToList();
         }
         //
-        // GET: /Store/Browse?genre=Disco
+        // url: "store/{genre}"
         public ActionResult Browse(string genre)
         {
             // Retrieve Genre and its Associated Albums from database
@@ -57,10 +57,11 @@ namespace WecareMVC.Controllers
         [ChildActionOnly]
         public ActionResult GenreMenu()   //左側分類Menu
         {                        
-            var genres = from p in storeDB.Genres
-                         orderby p.Name ascending
-                         select new GenreViewModel
-                         {  AlbumsCount = p.Albums.Count, GenreName =p.Name };
+            //var genres = from p in storeDB.Genres
+            //             orderby p.Name ascending
+            //             select new GenreViewModel
+            //             {  AlbumsCount = p.Albums.Count, GenreName =p.Name };
+            var genres = storeDB.Genres.Include("Albums").OrderBy(g => g.Name);
             var model = genres.ToList();         
             return PartialView("_GenreMenu", model);
         }

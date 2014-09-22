@@ -64,8 +64,9 @@
             <div class="thumbnail">
                 @*style="max-height:400px !important">*@
                 <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                @*<img src="~/App_Data/Images/善存.jpg" />*@
                 <div class="caption">
-                    <h4 class="pull-right"><s>$ @(album.Price + 3)</s></h4>
+                    <h4 class="pull-right text-success"><s>$ @(album.Price +3)</s></h4>
                     <h4>
                         <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
                             @Truncate(album.Title, 15)

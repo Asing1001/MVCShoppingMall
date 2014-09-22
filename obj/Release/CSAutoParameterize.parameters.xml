@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="StorageConnectionString-Web.config Connection String" description="StorageConnectionString 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="DefaultEndpointsProtocol=https;AccountName=wecaremvc;AccountKey=kGB9+TjinlSMk9rGJ8sl6UuJIfbNL3GR6AGkI/RvRgbdYI8tN2OsH13nOztcRfedxOyzjWKRv0cqEEqvYf8MQQ==" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Andy\\Desktop\\MVCShoppingMall\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StorageConnectionString']/@connectionString" />
+  <parameter name="MusicStoreEntities1-Web.config Connection String" description="MusicStoreEntities1 Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|CompactDB.sdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Andy\\Desktop\\MyWebSite\\MVCShoppingMall\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MusicStoreEntities1']/@connectionString" />
   </parameter>
-  <parameter name="MusicStoreEntities1-Web.config Connection String" description="MusicStoreEntities1 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="data source=.;initial catalog=MV1233;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Andy\\Desktop\\MVCShoppingMall\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MusicStoreEntities1']/@connectionString" />
+  <parameter name="StorageConnectionString-Web.config Connection String" description="StorageConnectionString Connection String used in web.config by the application to access the database." defaultValue="DefaultEndpointsProtocol=https;AccountName=wecaremvc;AccountKey=kGB9+TjinlSMk9rGJ8sl6UuJIfbNL3GR6AGkI/RvRgbdYI8tN2OsH13nOztcRfedxOyzjWKRv0cqEEqvYf8MQQ==" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Andy\\Desktop\\MyWebSite\\MVCShoppingMall\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StorageConnectionString']/@connectionString" />
   </parameter>
 </parameters>

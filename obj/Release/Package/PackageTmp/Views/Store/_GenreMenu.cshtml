@@ -1,22 +1,23 @@
-﻿@*@model IEnumerable<WecareMVC.Models.Genre>*@
-@model  IEnumerable<WecareMVC.ViewModels.GenreViewModel>
+﻿@model IEnumerable<WecareMVC.Models.Genre>
+@*@model  IEnumerable<WecareMVC.ViewModels.GenreViewModel>*@
 
 <div id="categories" class="list-group">
     @*<a href="#" class="list-group-item active" ></a>*@
     @foreach (var genre in Model)
     {
-        if (genre.GenreName == "Hot")
+        if (genre.Name == "Hot")
         {
-            <a href="/Store/Browse?Genre=@genre.GenreName" class="list-group-item text-danger h3" style="margin-bottom:0!important; color:#e74c3c !important;">
-                <span class="badge" style="background:#e74c3c !important;">@genre.AlbumsCount </span>
-                @genre.GenreName
+            <a href="/Store/@genre.Name" class="list-group-item text-danger h3" style="margin-bottom:0!important; color:#e74c3c !important;">
+                <span class="badge" style="background:#e74c3c !important;">@genre.Albums.Count
+                </span>
+                @genre.Name
             </a>
         }
         else
         {
-            <a href="/Store/Browse?Genre=@genre.GenreName" class="text-info list-group-item h4 " style="margin-top:0 !important; margin-bottom:0!important; border-top:none !important ; font-family:'Microsoft JhengHei'; ">
-                <span class="badge">@genre.AlbumsCount </span>
-                @genre.GenreName
+            <a href="/Store/@genre.Name" class="text-info list-group-item h4 " style="margin-top:0 !important; margin-bottom:0!important; border-top:none !important ; font-family:'Microsoft JhengHei'; ">
+                <span class="badge">@genre.Albums.Count </span>
+                @genre.Name
             </a>
         }
 

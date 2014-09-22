@@ -1,15 +1,23 @@
 ﻿@model WecareMVC.Models.Album
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "商品詳細資料";
 }
 
-<h2>Details</h2>
+<h3>商品詳細資料 - @Model.Title</h3>
 
 <div>
-    <h4>Album</h4>
+   
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Artist.Name)
         </dt>
@@ -26,13 +34,7 @@
             @Html.DisplayFor(model => model.Genre.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.Price)
@@ -46,10 +48,13 @@
             @Html.DisplayNameFor(model => model.AlbumArtUrl)
         </dt>
 
-        <dd>
+        <dd>           
             @Html.DisplayFor(model => model.AlbumArtUrl)
+           
         </dd>
 
+        
+        <dd><img src="@Model.AlbumArtUrl" class="img-responsive" alt="" /></dd>
     </dl>
 </div>
 <p>
