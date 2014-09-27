@@ -52,12 +52,12 @@
 
         <div class="row">
 
-            <nav class="col-xs-12 col-sm-3">
+            <nav class="col-sm-12 col-md-3">
                 <header class="lead text-center tex"><h3 class="text-danger">商品分類</h3></header>    @*區段標題header*@
                 @{Html.RenderAction("GenreMenu", "Store");}
             </nav>
 
-            <section class="col-xs-12 col-sm-9">@RenderBody()</section>
+            <section class="col-xs-12 col-sm-12 col-md-9">@RenderBody()</section>
 
         </div>
 

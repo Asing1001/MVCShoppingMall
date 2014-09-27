@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using WecareMVC.Models;
 using WecareMVC.ViewModels;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace WecareMVC.Controllers
 {
@@ -15,8 +18,7 @@ namespace WecareMVC.Controllers
         // GET: /Store/
         public ActionResult Index()
         {
-            var genres = storeDB.Genres.ToList();
-                         
+            var genres = storeDB.Genres.ToList();            
             return View(genres);
             //var genres = new List<Genre> { 
             //    new Genre { Name = "Disco" }, 
@@ -35,15 +37,17 @@ namespace WecareMVC.Controllers
                 .Take(count)
                 .ToList();
         }
+
         //
         // url: "store/{genre}"
-        public ActionResult Browse(string genre)
+        public ActionResult Browse(int? page, string genre = "Hot")
         {
-            // Retrieve Genre and its Associated Albums from database
+           // Retrieve Genre and its Associated Albums from database
             var genreModel = storeDB.Genres.Include("Albums")
-                .Single(g => g.Name == genre);
+                .Single(g => g.Name == genre).Albums;
 
-            return View(genreModel);
+
+            return View(genreModel.ToList().ToPagedList(page?? 1, 6));
         }
 
         // GET: /Store/Details/5

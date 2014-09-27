@@ -1,28 +1,19 @@
-﻿@model IEnumerable<WecareMVC.Models.Genre>
+﻿@using WecareMVC.Models;
+@model IEnumerable<WecareMVC.Models.Genre>
 @{
     ViewBag.Title = "WecareShop";
 }
 
+
 <div class="row">
     <header>        <h1 class="text-danger text-center">各分類Top3熱賣商品</h1>    </header>
-        @helper Truncate(string input, int length)
-{
-    if (input.Length <= length)
-    {
-        @input
-    }
-    else
-    {
-        @input.Substring(0, length)<text>...</text>
-    }
-}
-
+    
         <article>
             @foreach (var genre in Model)
             {
                 <section class="row">
-                    <header>
-                        <a href="/Store/Browse?Genre=@genre.Name" class="col-xs-12">
+                    <header class="col-md-12">
+                        <a href="/Store/@genre.Name">
                             <h2>@genre.Name</h2>
                         </a>
                     </header>
@@ -37,7 +28,8 @@
                                     <h4 class="pull-right"><s>$ @(album.Price + 3)</s></h4>
                                     <h4>
                                         <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
-                                            @Truncate(album.Title, 15)
+                                            @album.Title.Truncate(10)                                      
+
                                         </a>
                                     </h4>
                                     @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@

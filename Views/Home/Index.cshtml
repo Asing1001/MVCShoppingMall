@@ -69,7 +69,7 @@
                     <h4 class="pull-right text-success"><s>$ @(album.Price +3)</s></h4>
                     <h4>
                         <a href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
-                            @Truncate(album.Title, 15)
+                            @Truncate(album.Title, 10)
                         </a>
                     </h4>
                     @*<p>作者：@Truncate(album.Artist.Name, 25)</p>*@

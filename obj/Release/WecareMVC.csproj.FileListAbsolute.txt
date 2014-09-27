@@ -565,3 +565,7 @@ C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\bin\zh-Hant\System.Web.WebPages.
 C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\obj\Release\WecareMVC.csprojResolveAssemblyReference.cache
 C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\obj\Release\WecareMVC.dll
 C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\obj\Release\WecareMVC.pdb
+C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\bin\PagedList.dll
+C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\bin\PagedList.Mvc.dll
+C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\bin\PagedList.xml
+C:\Users\Andy\Desktop\MyWebSite\MVCShoppingMall\bin\PagedList.Mvc.xml
