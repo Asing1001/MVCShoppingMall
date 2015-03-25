@@ -90,10 +90,6 @@
 </script>
 @using (Html.BeginForm())
 {
-
- 
-    @*@Html.ActionLink("確認訂單", "AddressAndPayment", "Checkout")*@
-
   
       //驗證欄位
 <div>
@@ -112,20 +108,6 @@
         <div class="page-header">
             <h1 id="tables">您的購物車</h1>
         </div>
-
-        @*<table>
-            <tr>
-                <th>
-                    Album Name
-                </th>
-                <th>
-                    Price (each)
-                </th>
-                <th>
-                    Quantity
-                </th>
-                <th></th>
-            </tr>*@
         <div class="bs-component">
             <table class="table table-striped table-hover ">
                 <thead>
@@ -147,16 +129,16 @@
                             <td>
                                 @item.Album.Price
                             </td>
-                            @*<td id="item-count-@item.RecordId">
-                                    @item.Count
-                                </td>*@
+                       
                             <td>
                                 @Html.TextBoxFor(model => model.CartItems[ix].Count,
            new
            {
+               
                style = "width:30px; text-align:right;",
                onkeyup = "clearUpdateMessage();",
-               onchange = "clearUpdateMessage();"
+               onchange = "clearUpdateMessage();",
+               @class ="amountBox"
            })
                             </td>
                             <td>
@@ -164,7 +146,6 @@
                                    txt-id="CartItems_@(ix)__Count">修改數量</a>&nbsp;|&nbsp;
                                 <a href="#" class="RemoveLink"
                                    data-id="@item.RecordId">
-                                    @*使用data-id瀏覽器端才不會看到，這樣比較安全*@
                                    移除
                                 </a>
                             </td>

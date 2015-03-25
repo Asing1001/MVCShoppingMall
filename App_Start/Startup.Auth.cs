@@ -56,8 +56,8 @@ namespace IdentitySample
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-            appId: "351051355069147",
-            appSecret: "9def0cceec52a42a4c5f241b9be6b55e");
+            appId: "292696360926184",
+            appSecret: "42689850073ee1ef6af3ad0029cbec13");
 
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()

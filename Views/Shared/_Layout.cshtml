@@ -7,7 +7,7 @@
 
    
     @*@Styles.Render("~/Content/css")*@
-    <link href=@Convert.ToString( HttpContext.Current.Application["Theme"]) rel="stylesheet" type="text/css" />
+    <link id="theme" href="../../Content/bootstrap_Default.css" rel="stylesheet" type="text/css" />
     
     @Scripts.Render("~/bundles/modernizr")
     <style type=text/css>
@@ -71,39 +71,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('#FileUpload1').change(function readURL() {
-                $('#pUrl').text('預估url為:/Content/Images/Product/' + this.files[0].name);
-
-                var reader = new FileReader();
-                
-                reader.readAsDataURL(this.files[0]);
-                reader.onload = function (e) {
-                  $('#img1').attr('src', e.target.result);
-                    
-                }
-            })
-
-
-
-            $('#myTheme>li>a').click(function () {
-                $.ajax({
-                    url: "/Home/LoadTheme/?Theme=" + $(this).text(),
-                    success: function (data) {
-                        $("link[rel=stylesheet]").attr({ href: data });
-                        return false;
-                    }
-                })
-            })
-
-        });
-
-        $('.carousel').carousel({
-            interval: 2000
-        })
-    </script>
+    <script src="~/Scripts/common.js"></script>
+  
 </body>
 </html>
