@@ -22,6 +22,10 @@ namespace IdentitySample
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                      "~/Scripts/common.js"
+                      ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",  //bootstrap.css
                       "~/Content/site.css"));

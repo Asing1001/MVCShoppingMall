@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $('#FileUpload1').change(function readURL() {
+    $('#FileUpload1').change(function () {
         $('#pUrl').text('預估url為:/Content/Images/Product/' + this.files[0].name);
 
         var reader = new FileReader();
@@ -23,8 +23,8 @@
         //})
     });
 
-});
 
-$('.carousel').carousel({
-    interval: 2000
-})
+    $('.carousel').carousel({
+        interval: 3000
+    });
+});
