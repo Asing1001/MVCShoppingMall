@@ -1,5 +1,5 @@
 # MVC購物商城
-[English README](#english-readme) | [預覽](http://wecarestore.azurewebsites.net/) | 管理員帳號 : `admin@admin.com/P@ssw0rd`  
+[English readme](#english-readme) | [預覽](http://wecarestore.azurewebsites.net/) | 管理員帳號 : `admin@admin.com/P@ssw0rd`  
 使用 ASP.NET MVC 做購物商城 + 後台
 
 ## 特色：
