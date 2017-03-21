@@ -10,7 +10,7 @@ Use `ASP.NET MVC` `Bootstrap3` `MSSQL` to build e-commerce platform, including b
 3. Code first so it will auto generate db in App_Data
 4. Responsive design
 
-## Developement
+## Developement：
 Open with VS2013 and just run it, since it is `Code first` it will auto generate db in App_Data. 
 
 MVCShoppingMall
@@ -24,5 +24,5 @@ MVCShoppingMall
 3. 商品上下架
 4. 商品圖片上傳Azure Blob
 
-## 開發
+## 開發：
 使用Visual Studio 跑起來後會自動產生db檔案到App_Data.
