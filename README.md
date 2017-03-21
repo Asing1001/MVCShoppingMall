@@ -1,5 +1,5 @@
 # MVC購物商城
-[English readme](#english-readme) | [預覽](http://wecarestore.azurewebsites.net/) | 管理員帳號 : `admin@admin.com/P@ssw0rd`  
+[English Readme](#english-readme) | [預覽](http://wecarestore.azurewebsites.net/) | 管理員帳號 : `admin@admin.com/P@ssw0rd`  
 使用 ASP.NET MVC 做購物商城 + 後台
 
 ## 特色：
@@ -11,7 +11,7 @@
 ## 開發：
 使用Visual Studio 跑起來後會自動產生db檔案到App_Data.
 
-# MVCShoppingMall <a name="english-readme"></a>
+# <a name="english-readme"></a> MVCShoppingMall 
 [Live preview](http://wecarestore.azurewebsites.net/) | Admin account : `admin@admin.com/P@ssw0rd`  
 Use `ASP.NET MVC` `Bootstrap3` `MSSQL` to build e-commerce platform, including backoffice.
 ![](https://asing1001.github.io/portfolio/index/wecare-store.jpg)
